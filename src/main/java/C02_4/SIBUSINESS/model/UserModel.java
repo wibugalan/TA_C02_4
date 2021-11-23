@@ -43,19 +43,7 @@ public class UserModel implements Serializable{
     @Size(max = 200)
     @Column(name="password", nullable = false)
     private String password;
-
-    // Relasi dengan Coupon
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_coupon", referencedColumnName = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private CouponModel coupon;
-
-    // Relasi dengan ItemFactory
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_ItemFactory", referencedColumnName = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private ItemFactoryModel itemFactory;
-
+    
 
     // Relasi dengan Role
     @ManyToOne(fetch = FetchType.EAGER)
@@ -64,5 +52,12 @@ public class UserModel implements Serializable{
     @JsonIgnore
     private RoleModel role;
 
+    // Relasi dengan coupon
+    @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CouponModel> listCoupon;
+
+    // Relasi dengan Item Factory
+    @OneToMany(mappedBy = "approver", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ItemFactoryModel> listItemFactory;
 
 }

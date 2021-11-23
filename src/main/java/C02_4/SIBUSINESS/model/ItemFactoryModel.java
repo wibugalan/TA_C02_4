@@ -57,7 +57,10 @@ public class ItemFactoryModel implements Serializable{
     @Column(name = "cluster", nullable = false)
     private String cluster;
 
-    // Relasi dengan User
-    @OneToMany(mappedBy = "itemFactory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<UserModel> listApprover;
+    // Relasi dengan user
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "approver", referencedColumnName = "uuid", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private UserModel approver;
+
 }
