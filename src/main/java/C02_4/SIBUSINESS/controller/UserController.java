@@ -64,26 +64,26 @@ public class UserController {
             @RequestParam(value = "passBaru") String passBaru,
             Model model
     ){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         List<RoleModel> listRole = roleService.getListRole();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         boolean cond = passwordEncoder.matches(passLamaForm, passLama);
         if (cond){
             if (passBaru.equals(user.getPassword())) {
                 userService.addUser(user);
             }
             else {
+                user.setPassword(passLama);
                 model.addAttribute("passwordLama", false);
                 model.addAttribute("passwordBaru", true);
-                user.setPassword(passLama);
                 model.addAttribute("listRole", listRole);
                 model.addAttribute("user", user);
                 return "form-update-user";
             }
         }
         else {
+            user.setPassword(passLama);
             model.addAttribute("passwordLama", true);
             model.addAttribute("passwordBaru", false);
-            user.setPassword(passLama);
             model.addAttribute("listRole", listRole);
             model.addAttribute("user", user);
             return "form-update-user";
