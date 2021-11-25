@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
     <meta charset="UTF-8">
@@ -7,16 +7,51 @@
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+<style>
+    .judul {
+        color: #5E20C9;
+        font-weight:800;
+    }
+
+    thead {
+        background-color: #5E20C9;
+        color: white;
+        white-space: nowrap
+    }
+
+    .primary-button {
+        background-color: #5E20C9;
+        color: white;
+    }
+
+    .secondary-button {
+        background-color: #CAD0FA;
+        color: black;
+    }
+    .atas {
+        margin-top: 32px;
+    }
+    .fa {
+        margin-right: 5px;
+    }
+    table tr th {
+        width: 140px;
+
+    }
+</style>
 
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container">
     <h2>Daftar Seluruh User</h2>
     <br>
+
     <a th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambah User Baru</a>
     <br>
     <div th:if="*{listUser.size() != 0}">
         <table class="table">
+
+
             <thead>
             <tr>
                 <th>Id</th>
@@ -31,7 +66,7 @@
                 <td th:text="${user.username}"></td>
                 <td th:text="${user.role.role_name}"></td>
                 <td>
-<!--                    <a class="btn btn-sm btn-primary"  th:href="@{/user/delete/} + ${user.username}">Delete</a>-->
+                    <a sec:authorize="hasAuthority('Manager Business')" class="btn btn-sm btn-primary secondary-button"  th:href="@{/user/update/} + ${user.username}">Update</a>
                 </td>
 
 
@@ -42,7 +77,7 @@
     </div>
 
 
-    <a class="btn btn-primary" href="/">Home</a>
+    <a class="btn btn-primary primary-button" href="/">Home</a>
 </div>
 
 </body>
