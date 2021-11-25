@@ -45,9 +45,13 @@
 <div class="container">
     <h2>Daftar Seluruh User</h2>
     <br>
-    <a th:href="@{/user/add}" class="mx-2 btn btn-warning">Tambah User Baru</a>
-    <div class="atas" th:if="*{listUser.size() != 0}">
-        <table class="table table-striped">
+
+    <a th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambah User Baru</a>
+    <br>
+    <div th:if="*{listUser.size() != 0}">
+        <table class="table">
+
+
             <thead>
             <tr>
                 <th>Id</th>
