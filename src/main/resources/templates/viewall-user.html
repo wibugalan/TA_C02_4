@@ -64,7 +64,10 @@
                 <td th:text="${user.role.role_name}"></td>
 <!--                <td sec:authorize="hasAuthority('Manager Business')">-->
                 <td>
-                    <a class="btn btn-sm btn-primary secondary-button"  th:href="@{/user/update/} + ${user.uuid}">Update</a>
+                    <form th:action="@{/user/update}" method="GET">
+                        <input type="hidden" th:value="${user.uuid}" name="id" />
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">Update</button>
+                    </form>
                 </td>
 
 

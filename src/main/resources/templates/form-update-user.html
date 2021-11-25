@@ -6,65 +6,81 @@
     <title>SI-BUSINESS</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFIBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js
+"></script>
+    <script th:src="@{../js/bootstrap.min.js}"></script>
 </head>
 <nav th:replace="fragments/fragment :: navbar"></nav>
+
 <body>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Update Data User</div>
-                <div class="card-body">
-                    <form th:action="@{/user/update}" th:object="${user}"  method="POST">
-                        <input type="hidden" th:field="*{uuid}" />
-                        <label>UUID</label>
-                        <input type="text" disabled class="form-control" th:field="${user.uuid}" />
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Update Data User</div>
+                    <div class="card-body">
+                        <form th:action="@{/user/update}" th:object="${user}" method="POST">
+                            <div th:if="${passwordLama}">
+                                <span style="color: red">Password Lama Salah!</span>
+                            </div>
+                            <div th:if="${passwordBaru}">
+                                <span style="color: red">Password Tidak Sama!</span>
+                            </div>
+                            <input type="hidden" th:field="*{uuid}" />
+                            <label>UUID</label>
+                            <input type="text" disabled class="form-control" th:field="${user.uuid}" />
 
-                        <label>User Name</label>
-                        <input type="text" name="username" class="form-control" th:field="${user.username}"/>
+                            <label>User Name</label>
+                            <input type="text" name="username" class="form-control" th:field="${user.username}" />
 
 
-                        <input type="hidden" th:value="${user.password}" name="passLama" />
+                            <input type="hidden" th:value="${user.password}" name="passLama" />
 
-                        <div th:if="${passwordLama}">
-                            <span style="color: red">Password Lama Salah!</span>
-                        </div>
-                        <div th:if="${passwordBaru}">
-                            <span style="color: red">Password Tidak Sama!</span>
-                        </div>
 
-                        <label>Password Lama</label>
-                        <input required type="password" name="passLamaForm" class="form-control" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter"/>
+                            <label>Password Lama</label>
+                            <input required type="password" name="passLamaForm" class="form-control"
+                                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                                title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter" />
 
-                        <label>Password</label>
-                        <input required type="password" name="passBaru" class="form-control" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter"/>
+                            <label>Password</label>
+                            <input required type="password" name="passBaru" class="form-control"
+                                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                                title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter" />
 
-                        <label>Konfirmasi Password Baru</label>
-                        <input required type="password" name="password" class="form-control" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter"/>
+                            <label>Konfirmasi Password Baru</label>
+                            <input required type="password" name="password" class="form-control"
+                                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                                title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter" />
 
-                        <label>Role</label>
-                        <select name="role" class="form-control">
-                            <option selected th:if="${user.role.id} == 1" th:value="${user.role.id}">Manager Business</option>
-                            <option th:if="${user.role.id} == 1" th:value="2">Staff_Product</option>
-                            <option th:if="${user.role.id} == 1" th:value="3">Staff_Marketing</option>
+                            <label>Role</label>
+                            <select name="role" class="form-control">
+                                <option selected th:if="${user.role.id} == 1" th:value="${user.role.id}">Manager
+                                    Business</option>
+                                <option th:if="${user.role.id} == 1" th:value="2">Staff_Product</option>
+                                <option th:if="${user.role.id} == 1" th:value="3">Staff_Marketing</option>
 
-                            <option th:if="${user.role.id} == 2" th:value="1">Manager Business</option>
-                            <option selected th:if="${user.role.id} == 2" th:value="${user.role.id}">Staff_Product</option>
-                            <option th:if="${user.role.id} == 2" th:value="3">Staff_Marketing</option>
+                                <option th:if="${user.role.id} == 2" th:value="1">Manager Business</option>
+                                <option selected th:if="${user.role.id} == 2" th:value="${user.role.id}">Staff_Product
+                                </option>
+                                <option th:if="${user.role.id} == 2" th:value="3">Staff_Marketing</option>
 
-                            <option th:if="${user.role.id} == 3" th:value="1">Manager Business</option>
-                            <option th:if="${user.role.id} == 3" th:value="2">Staff_Product</option>
-                            <option selected th:if="${user.role.id} == 3" th:value="${user.role.id}">Staff_Marketing</option>
-                        </select>
-                        <br>
-                        <button type="submit" class="btn btn-warning">Simpan</button>
-                        <a class="btn btn-outline-warning" href="/">Kembali</a>
-                    </form>
+                                <option th:if="${user.role.id} == 3" th:value="1">Manager Business</option>
+                                <option th:if="${user.role.id} == 3" th:value="2">Staff_Product</option>
+                                <option selected th:if="${user.role.id} == 3" th:value="${user.role.id}">Staff_Marketing
+                                </option>
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-warning">Simpan</button>
+                            <a class="btn btn-outline-warning" href="/">Kembali</a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
