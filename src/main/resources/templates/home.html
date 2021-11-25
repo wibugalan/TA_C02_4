@@ -20,18 +20,22 @@
 
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<div class="d-flex justify-content-center">
-    <div class="m-4">
-        <h1 style="text-align:center" th:text="'Hello ' + ${#httpServletRequest.remoteUser} + ' !'">Login as</h1>
-        <h2>Selamat datang di SI-BUSINESS</h2>
-        <div class="my-3 d-flex justify-content-center">
-            <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/viewall}" class="mx-2 btn btn-outline-warning">Lihat Semua User</a>
-            <section>
-                <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambahkan User Baru</a>
-            </section>
-        </div>
+    <div class="jumbotron text-white jumbotron-image shadow" style="background-image: url('https://images.unsplash.com/photo-1498856878645-934f9b6597dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');">
+        <h2 class="mb-4" th:text=" 'Hello, ' + ${#httpServletRequest.remoteUser} + ' !'">
+        </h2>
+        <p class="mb-4">
+            Selamat datang di SI-BUSINESS
+        </p>
+        <!--    hanya bisa jika login menggunakan manager business    -->
+        <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/viewall}" class="mx-2 btn btn-warning">Lihat Semua User</a>
+        <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambahkan User Baru</a>
+
+        <!--uncomment kalau ingin mengecek tombol sudah bisa atau belum-->
+<!--        <a th:href="@{/user/viewall}" class="mx-2 btn btn-warning">Lihat Semua User</a>-->
+<!--        <a th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambahkan User Baru</a>-->
     </div>
-</div>
+
+
 </body>
 
 </html>
