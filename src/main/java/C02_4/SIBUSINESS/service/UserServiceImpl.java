@@ -18,12 +18,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDB userDB;
 
-//    @Override
-//    public UserModel addUser(UserModel user) {
-//        String pass = encrypt(user.getPassword());
-//        user.setPassword(pass);
-//        return userDB.save(user);
-//    }
+    @Override
+    public void addUser(UserModel user) {
+        String pass = encrypt(user.getPassword());
+        user.setPassword(pass);
+        userDB.save(user);
+    }
 
     @Override
     public List<UserModel> getUserList() {

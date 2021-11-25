@@ -20,21 +20,21 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
-//    @GetMapping("/add")
-//    private String addUserFormPage(Model model){
-//        UserModel user = new UserModel();
-//        List<RoleModel> listRole = roleService.getListRole();
-//        model.addAttribute("user", user);
-//        model.addAttribute("listRole", listRole);
-//        return "form-add-user";
-//    }
+    @GetMapping("/add")
+    private String addUserFormPage(Model model){
+        UserModel user = new UserModel();
+        List<RoleModel> listRole = roleService.getListRole();
+        model.addAttribute("user", user);
+        model.addAttribute("listRole", listRole);
+        return "form-add-user";
+    }
 
-//    @PostMapping("/add")
-//    private String addUserSubmit(@ModelAttribute UserModel user, Model model){
-//        userService.addUser(user);
-//        model.addAttribute("user", user);
-//        return "redirect:/";
-//    }
+    @PostMapping("/add")
+    private String addUserSubmit(@ModelAttribute UserModel user, Model model){
+        userService.addUser(user);
+        model.addAttribute("user", user);
+        return "redirect:/";
+    }
 
     @GetMapping("/viewall")
     public String listUser(Model model){
