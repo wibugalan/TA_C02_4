@@ -22,6 +22,7 @@
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="d-flex justify-content-center">
     <div class="m-4">
+        <h1 style="text-align:center" th:text="'Hello ' + ${#httpServletRequest.remoteUser} + ' !'">Login as</h1>
         <h2>Selamat datang di SI-BUSINESS</h2>
         <div class="my-3 d-flex justify-content-center">
             <a th:href="@{/user/viewall}" class="mx-2 btn btn-outline-warning">Lihat Semua User</a>
