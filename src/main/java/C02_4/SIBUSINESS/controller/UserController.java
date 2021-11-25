@@ -44,9 +44,9 @@ public class UserController {
         return "viewall-user";
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/update")
     private String updateUserFormPage(
-            @PathVariable String id,
+            @RequestParam(value = "id") String id,
             Model model)
     {
         UserModel user = userService.getUserById(id);
