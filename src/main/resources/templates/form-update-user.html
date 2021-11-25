@@ -23,7 +23,23 @@
                         <label>User Name</label>
                         <input type="text" name="username" class="form-control" th:field="${user.username}"/>
 
+
+                        <input type="hidden" th:value="${user.password}" name="passLama" />
+
+                        <div th:if="${passwordLama}">
+                            <span style="color: red">Password Lama Salah!</span>
+                        </div>
+                        <div th:if="${passwordBaru}">
+                            <span style="color: red">Password Tidak Sama!</span>
+                        </div>
+
+                        <label>Password Lama</label>
+                        <input required type="password" name="passLamaForm" class="form-control" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter"/>
+
                         <label>Password</label>
+                        <input required type="password" name="passBaru" class="form-control" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter"/>
+
+                        <label>Konfirmasi Password Baru</label>
                         <input required type="password" name="password" class="form-control" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter"/>
 
                         <label>Role</label>

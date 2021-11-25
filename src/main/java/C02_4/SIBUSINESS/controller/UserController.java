@@ -5,6 +5,7 @@ import C02_4.SIBUSINESS.model.RoleModel;
 import C02_4.SIBUSINESS.service.RoleService;
 import C02_4.SIBUSINESS.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -58,12 +59,36 @@ public class UserController {
     @PostMapping("/update")
     private String updateUserSubmit(
             @ModelAttribute UserModel user,
+            @RequestParam(value = "passLama") String passLama,
+            @RequestParam(value = "passLamaForm") String passLamaForm,
+            @RequestParam(value = "passBaru") String passBaru,
             Model model
     ){
-        userService.addUser(user);
-        List<UserModel> listUser = userService.getUserList();
-        model.addAttribute("listUser", listUser);
-        return "viewall-user";
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        List<RoleModel> listRole = roleService.getListRole();
+        boolean cond = passwordEncoder.matches(passLamaForm, passLama);
+        if (cond){
+            if (passBaru.equals(user.getPassword())) {
+                userService.addUser(user);
+            }
+            else {
+                model.addAttribute("passwordLama", false);
+                model.addAttribute("passwordBaru", true);
+                user.setPassword(passLama);
+                model.addAttribute("listRole", listRole);
+                model.addAttribute("user", user);
+                return "form-update-user";
+            }
+        }
+        else {
+            model.addAttribute("passwordLama", true);
+            model.addAttribute("passwordBaru", false);
+            user.setPassword(passLama);
+            model.addAttribute("listRole", listRole);
+            model.addAttribute("user", user);
+            return "form-update-user";
+        }
+        return "redirect:/user/viewall";
     }
 
 //    @GetMapping("/delete/{username}")
