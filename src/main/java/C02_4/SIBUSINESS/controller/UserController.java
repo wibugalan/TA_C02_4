@@ -43,6 +43,29 @@ public class UserController {
         return "viewall-user";
     }
 
+    @GetMapping("/update/{id}")
+    private String updateUserFormPage(
+            @PathVariable String id,
+            Model model)
+    {
+        UserModel user = userService.getUserById(id);
+        List<RoleModel> listRole = roleService.getListRole();
+        model.addAttribute("user", user);
+        model.addAttribute("listRole", listRole);
+        return "form-update-user";
+    }
+
+    @PostMapping("/update")
+    private String updateUserSubmit(
+            @ModelAttribute UserModel user,
+            Model model
+    ){
+        userService.addUser(user);
+        List<UserModel> listUser = userService.getUserList();
+        model.addAttribute("listUser", listUser);
+        return "viewall-user";
+    }
+
 //    @GetMapping("/delete/{username}")
 //    public String deleteUser(@PathVariable String username, Model model) {
 //        UserModel user = userService.getUserByUsername(username);

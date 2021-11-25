@@ -44,6 +44,12 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public UserModel getUserById(String id) {
+        UserModel user = userDB.findByUuid(id);
+        return user;
+    }
+
 //    @Override
 //    public void deleteUser (UserModel user) {
 //        userDB.delete(user);
