@@ -45,19 +45,15 @@
 <div class="container">
     <h2>Daftar Seluruh User</h2>
     <br>
-
-    <a th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambah User Baru</a>
-    <br>
-    <div th:if="*{listUser.size() != 0}">
-        <table class="table">
-
-
+    <a th:href="@{/user/add}" class="mx-2 btn btn-warning">Tambah User Baru</a>
+    <div class="atas" th:if="*{listUser.size() != 0}">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>Id</th>
                 <th>Username</th>
                 <th>Role</th>
-                <th>Action</th>
+                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>
             </tr>
             </thead>
             <tbody>
@@ -65,8 +61,8 @@
                 <td th:text="${user.uuid}"></td>
                 <td th:text="${user.username}"></td>
                 <td th:text="${user.role.role_name}"></td>
-                <td>
-                    <a sec:authorize="hasAuthority('Manager Business')" class="btn btn-sm btn-primary secondary-button"  th:href="@{/user/update/} + ${user.username}">Update</a>
+                <td sec:authorize="hasAuthority('Manager Business')">
+                    <a class="btn btn-sm btn-primary secondary-button"  th:href="@{/user/update/} + ${user.username}">Update</a>
                 </td>
 
 
