@@ -9,23 +9,23 @@
 </head>
 <style>
     .judul {
-        color: #5E20C9;
+        color: #0D0603;
         font-weight:800;
     }
 
     thead {
-        background-color: #5E20C9;
+        background-color: #91684A;
         color: white;
         white-space: nowrap
     }
 
     .primary-button {
-        background-color: #5E20C9;
+        background-color: #91684A;
         color: white;
     }
 
     .secondary-button {
-        background-color: #CAD0FA;
+        background-color: #FFDF91;
         color: black;
     }
     .atas {
@@ -42,8 +42,8 @@
 
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<div class="container">
-    <h2>Daftar Seluruh User</h2>
+<div class="container atas">
+    <h2 class="judul">Daftar Seluruh User</h2>
     <br>
     <a th:href="@{/user/add}" class="mx-2 btn btn-warning">Tambah User Baru</a>
     <div class="atas" th:if="*{listUser.size() != 0}">
