@@ -53,7 +53,8 @@
                 <th>Id</th>
                 <th>Username</th>
                 <th>Role</th>
-                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>
+<!--                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>-->
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -61,8 +62,9 @@
                 <td th:text="${user.uuid}"></td>
                 <td th:text="${user.username}"></td>
                 <td th:text="${user.role.role_name}"></td>
-                <td sec:authorize="hasAuthority('Manager Business')">
-                    <a class="btn btn-sm btn-primary secondary-button"  th:href="@{/user/update/} + ${user.username}">Update</a>
+<!--                <td sec:authorize="hasAuthority('Manager Business')">-->
+                <td>
+                    <a class="btn btn-sm btn-primary secondary-button"  th:href="@{/user/update/} + ${user.uuid}">Update</a>
                 </td>
 
 

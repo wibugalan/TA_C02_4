@@ -10,6 +10,7 @@ public interface UserService {
     UserModel getUserByUsername(String username);
 
     void addUser(UserModel user);
+    UserModel getUserById(String id);
 //    void deleteUser(UserModel user);
 //    void updatePassword(UserModel user, String password);
 //    boolean checkMatch(String oldPassword, String newPassword);
