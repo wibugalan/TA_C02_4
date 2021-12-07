@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="UTF-8">
+    <title> SI-BUSINESS </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<style>
+    .judul {
+        color: #0D0603;
+        font-weight:800;
+    }
+
+    thead {
+        background-color: #91684A;
+        color: white;
+        white-space: nowrap
+    }
+
+    .primary-button {
+        background-color: #91684A;
+        color: white;
+    }
+
+    .secondary-button {
+        background-color: #FFDF91;
+        color: black;
+    }
+    .atas {
+        margin-top: 32px;
+    }
+    .fa {
+        margin-right: 5px;
+    }
+    table tr th {
+        width: 140px;
+
+    }
+</style>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container atas">
+    <h2 class="judul">Daftar Request Pembuatan Item</h2>
+    <br>
+
+    <div class="atas" th:if="*{listAll.size() != 0}">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id Item</th>
+                <th>Name</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Cluster</th>
+                <th>Status</th>
+                <!--                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>-->
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${listAll}">
+
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.stock}"></td>
+                <td th:text="${item.price}"></td>
+                <td th:text="${item.category}"></td>
+                <td th:text="${item.cluster}"></td>
+                <td th:text="${item.status}"></td>
+
+                <!--                <td sec:authorize="hasAuthority('Manager Business')">-->
+                <!--                <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAuthority('Staff Marketing')">-->
+                <td style="display: flex; align-items: center; justify-content: center;">
+                    <span ><a class="btn btn-sm btn-primary secondary-button mr-1" th:href="@{/}">Setuju</a></span>
+                    <span><a class="btn btn-sm btn-primary secondary-button ml-1" th:href="@{/}">Hapus</a></span>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <a class="btn btn-primary primary-button" href="/">Home</a>
+</div>
+
+</body>
+
+</html>
