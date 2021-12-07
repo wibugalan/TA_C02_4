@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
@@ -25,18 +26,22 @@ public class FactoryController {
     @Autowired
     private FactoryRestService factoryRestService;
 
-//    @GetMapping(value = "/list-penjaga")
-//    private List<ItemFactoryModel> retrieveListPenjaga(){
-//        return factoryRestService.getMesin();
+// hasilnya json
+//    @GetMapping("/mesin")
+//    public Flux<FactoryDetail> listMesin(Model model){
+//        Flux<FactoryDetail> listMesin = factoryRestService.getMesinJson();
+//        return listMesin;
 //    }
 
+//    hasilnya html
     @GetMapping("/mesin")
     public String listMesin(Model model){
-        Mono<String> listMesin2 = factoryRestService.getMesin();
+        Mono<String> listMesin2 = factoryRestService.getMesinJson2();
         String listMesin = listMesin2.block();
         model.addAttribute("listMesin", listMesin);
         return "viewall-mesin";
     }
+
 
 
 
