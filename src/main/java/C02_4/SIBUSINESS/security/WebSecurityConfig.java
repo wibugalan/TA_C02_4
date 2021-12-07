@@ -29,6 +29,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/viewall").hasAnyAuthority("Manager Business")
                 .antMatchers("/user/update/**").hasAnyAuthority("Manager Business")
                 .antMatchers("/api/item/**").hasAnyAuthority("Manager Business")
+                .antMatchers("/api/coupon/**").permitAll()
+                .antMatchers("/api-docs").permitAll()
+                .antMatchers("/v3/api-docs/**").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -48,10 +52,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
