@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>SI-BUSINESS</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container mb-4" style="display: flex; align-items: center;justify-content: center;">
+    <div class="card border-warning m-4" style="width: 75%;">
+        <div class="card-header border-warning">
+            <h2 style="text-align: center;">Detail Coupon</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-borderless mt-4">
+                <tbody>
+
+                <tr>
+                    <th class="col-6">Id</th>
+                    <td th:text="${coupon.id}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Code</th>
+                    <td th:text="${coupon.coupon_code}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Name</th>
+                    <td th:text="${coupon.coupon_name}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Discount Amount</th>
+                    <td th:text="${coupon.discountAmount}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Status</th>
+                    <td th:if="${coupon.status}==false">Menunggu Persetujuan</td>
+                    <td th:if="${coupon.status}==true">Disetujui</td>
+                </tr>
+                <tr>
+                    <th class="col-6">Expiry Date</th>
+                    <td th:text="${coupon.expiryDate}"></td>
+                </tr>
+                <tr>
+                    <th class="col-6">Creator</th>
+                    <td th:text="${coupon.creator.username}"></td>
+                </tr>
+                </tbody>
+
+            </table>
+            <table class="table table-striped table-borderless mt-4">
+                <div th:unless="${coupon.listCoupontype.size()==0}">
+                    <p colspan="5" style="text-align: center; font-weight:bold;">Daftar Type Coupon</p>
+
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Id</th>
+                        <th>Use Day</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="type, iterationStatus : ${coupon.listCoupontype}">
+                        <td th:text="${iterationStatus.count}"></td>
+                        <td th:text="${type.id}"></td>
+                        <td th:text="${type.use_day}"></td>
+                        <td th:text="'Rp'+${item.harga}"></td>
+                    </tr>
+                    </tbody>
+
+
+                </div>
+            </table>
+
+
+<!--            <table class="table table-striped table-borderless mt-4">-->
+<!--                <a class="btn btn-info mb-3" th:href="@{#tambah-item}">Tambah Item</a>-->
+<!--                <div th:if="${listItem.size()==0}">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th colspan="5" style="text-align: center;">Tidak ada Item pada Cabang</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                </div>-->
+<!--                <div th:unless="${listItem.size()==0}">-->
+<!--                    <p colspan="5" style="text-align: center; font-weight:bold;">Daftar Item Cabang</p>-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>No</th>-->
+<!--                        <th>Nama Item</th>-->
+<!--                        <th>Harga Item</th>-->
+<!--                        <th style="text-align: center;">Aksi</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr th:each="item, iterationStatus : ${listItem}">-->
+<!--                        <td th:text="${iterationStatus.count}"></td>-->
+<!--                        <td th:text="${item.nama}"></td>-->
+<!--                        <td th:text="'Rp'+${item.harga}"></td>-->
+<!--                        <td style="display: flex; align-items: center; justify-content: center;">-->
+<!--                            <span><a class="btn btn-info mr-1" th:href="@{#terapkan-promo}">Terapkan Promo</a></span>-->
+<!--                            <span><a class="btn btn-danger ml-1" th:href="@{#hapus-item}">Hapus Item</a></span>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </div>-->
+<!--            </table>-->
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <span><a class="btn btn-warning" href="#mengubah informasi coupon">Ubah</a></span>
+            <span><a class="btn btn-warning" th:href="@{#terapkan Hapus}">Hapus</a></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
