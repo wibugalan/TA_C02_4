@@ -1,6 +1,7 @@
 package C02_4.SIBUSINESS.service;
 
 import C02_4.SIBUSINESS.rest.FactoryDetail;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -13,7 +14,7 @@ public interface FactoryRestService {
     // hasilnya html
     Mono<String> getMesinJson2();
 
-    void mesin();
+    List<FactoryDetail> mesin() throws JsonProcessingException;
 }
 
 

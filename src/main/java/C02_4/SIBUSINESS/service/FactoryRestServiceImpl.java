@@ -14,6 +14,7 @@ import C02_4.SIBUSINESS.rest.Setting;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -37,48 +38,52 @@ public class FactoryRestServiceImpl implements FactoryRestService{
         return this.webClient.get().uri("/rest/mesin").retrieve().bodyToMono(String.class);
     }
 
-
     @Override
-    public void mesin() {
-        Flux<String> uriWeb = this.webClient.get().uri("/rest/mesin").retrieve().bodyToFlux(String.class);
-
-        String jsonStr = uriWeb.toString();
+    public List<FactoryDetail> mesin() throws JsonProcessingException {
+        Mono<String> uriWeb = this.webClient.get().uri("/rest/mesin").retrieve().bodyToMono(String.class);
+        List<FactoryDetail> allPlants = new ArrayList<FactoryDetail>();
         ObjectMapper mapper = new ObjectMapper();
-        FactoryDetail[] jsonObj = new FactoryDetail[0];
-        try {
-            jsonObj = mapper.readValue(jsonStr, FactoryDetail[].class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        FactoryDetail[] jsonObj = mapper.readValue(uriWeb.block(), FactoryDetail[].class);
 
         for (FactoryDetail itr : jsonObj) {
-            System.out.println("Val of name is: " + itr.getNama());
-            System.out.println("Val of number is: " + itr.getIdKategori());
+            int id = itr.getIdMesin();
+            itr.setIdMesin(id);
+
+            String nama = itr.getNama();
+            itr.setNama(nama);
+
+            int kategori = itr.getIdKategori();
+            itr.setIdKategori(kategori);
+
+            Date tanggal = itr.getTanggalDibuat();
+            itr.setTanggalDibuat(tanggal);
+
+            int kapasitas = itr.getKapasitas();
+            itr.setKapasitas(kapasitas);
+
+            allPlants.add(itr);
+            System.out.println(nama);
         }
+        return allPlants;
 
 
     }
 
 //    @Override
-//    public List<FactoryDetail> getMesinJson() throws Exception {
+//    public List<FactoryDetail> getListMesin() throws Exception {
 //        List<FactoryDetail> allPlants = new ArrayList<FactoryDetail>();
-//        Flux<FactoryDetail> uriWeb = this.webClient.get().uri("/rest/mesin").retrieve().bodyToFlux(FactoryDetail.class);
-//        String rawJson = uriWeb.toString();
-//        JSONObject root = new JSONObject(rawJson);
-//        JSONArray plants = root.getJSONArray("JSON");
+//        Mono<String> uriWeb = this.webClient.get().uri("/rest/mesin").retrieve().bodyToMono(String.class);
 //
-//        for(int i =0; i < plants.length(); i++){
+//        String rawJson = uriWeb.toString();
+//
+//        for(FactoryDetail x : response.getQuote()){
 //            JSONObject jsonPlant = plants.getJSONObject(i);
 //            FactoryDetail plant = new FactoryDetail();
 //            int guid = jsonPlant.getInt("id_mesin");
 //            plant.setIdMesin(guid);
 //            allPlants.add(plant);
 //        }
-//
-//
 //        return allPlants;
-//
-//
 //
 //    }
 

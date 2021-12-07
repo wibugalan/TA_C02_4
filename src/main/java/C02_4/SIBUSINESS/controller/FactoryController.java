@@ -4,6 +4,7 @@ package C02_4.SIBUSINESS.controller;
 import C02_4.SIBUSINESS.model.ItemFactoryModel;
 import C02_4.SIBUSINESS.rest.FactoryDetail;
 import C02_4.SIBUSINESS.service.FactoryRestService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,16 +34,21 @@ public class FactoryController {
 //        return listMesin;
 //    }
 
-//    hasilnya html
+////    hasilnya html
+//    @GetMapping("/mesin")
+//    public String listMesin(Model model){
+//        Mono<String> listMesin2 = factoryRestService.getMesinJson2();
+//        String listMesin = listMesin2.block();
+//        model.addAttribute("listMesin", listMesin);
+//        return "viewall-mesin";
+//    }
+
     @GetMapping("/mesin")
-    public String listMesin(Model model){
-        Mono<String> listMesin2 = factoryRestService.getMesinJson2();
-        String listMesin = listMesin2.block();
+    public String listMesin(Model model) throws JsonProcessingException {
+        List<FactoryDetail> listMesin = factoryRestService.mesin();
         model.addAttribute("listMesin", listMesin);
         return "viewall-mesin";
     }
-
-
 
 
 }
