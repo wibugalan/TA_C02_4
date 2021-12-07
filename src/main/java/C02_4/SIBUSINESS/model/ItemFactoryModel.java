@@ -37,6 +37,7 @@ public class ItemFactoryModel implements Serializable{
     @Column(name = "name", nullable = false)
     private String name;
 
+
     @Column(nullable = true)
     @JsonIgnore
     private Integer status;

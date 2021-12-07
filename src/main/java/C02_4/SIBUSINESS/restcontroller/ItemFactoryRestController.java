@@ -30,6 +30,7 @@ public class ItemFactoryRestController {
                     HttpStatus.BAD_REQUEST, "Request body has invalid type or missing field."
             );
         }else{
+            item.setStatus(0);
             return itemFactoryRestService.createItem(item);
         }
     }

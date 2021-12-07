@@ -18,7 +18,7 @@ public class ItemFactoryRestServiceImpl implements ItemFactoryRestService{
 
     @Override
     public ItemFactoryModel createItem(ItemFactoryModel item){
-        item.setStatus(0);
+
         return itemFactoryDB.save(item);
     }
 
