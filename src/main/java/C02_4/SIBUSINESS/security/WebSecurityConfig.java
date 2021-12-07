@@ -28,12 +28,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/add").hasAnyAuthority("Manager Business")
                 .antMatchers("/user/viewall").hasAnyAuthority("Manager Business")
                 .antMatchers("/user/update/**").hasAnyAuthority("Manager Business")
+                .antMatchers("/api/item/**").hasAnyAuthority("Manager Business")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login").permitAll()
+                .and()
+                .cors()
+                .and()
+                .csrf()
+                .disable()
+        ;
 
     }
 
