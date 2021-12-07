@@ -56,7 +56,7 @@ public class UserModel implements Serializable{
     @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CouponModel> listCoupon;
 
-    // Relasi dengan Item Factory
+//    Relasi dengan Item Factory
     @OneToMany(mappedBy = "approver", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ItemFactoryModel> listItemFactory;
 

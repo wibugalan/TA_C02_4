@@ -1,5 +1,6 @@
 package C02_4.SIBUSINESS.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,8 +37,9 @@ public class ItemFactoryModel implements Serializable{
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotNull
-    @Column(nullable = false)
+
+    @Column(nullable = true)
+    @JsonIgnore
     private Integer status;
 
     @NotNull
@@ -58,9 +60,13 @@ public class ItemFactoryModel implements Serializable{
     private String cluster;
 
     // Relasi dengan user
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "approver", referencedColumnName = "uuid", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "approver", referencedColumnName = "uuid", nullable = true)
+    @JsonIgnore
     private UserModel approver;
+
+//    @ManyToOne(cascade=CascadeType.ALL)
+//    @JoinColumn(name="approver_id", unique= false, nullable=true, insertable=true, updatable=true)
+//    private UserModel approver;
 
 }
