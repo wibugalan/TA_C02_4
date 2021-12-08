@@ -60,14 +60,28 @@
             <tr th:each="mesin : ${listMesin}">
                 <td th:text="${mesin.idMesin}"></td>
                 <td th:text="${mesin.nama}"></td>
-                <td th:text="${mesin.idKategori}"></td>
+<!--                <td th:text="${mesin.idKategori}"></td>-->
+                <td th:if="${mesin.idKategori} ==1">BUKU</td>
+                <td th:if="${mesin.idKategori} ==2">DAPUR</td>
+                <td th:if="${mesin.idKategori} ==3">MAKANAN & MINUMAN</td>
+                <td th:if="${mesin.idKategori} ==4">ELEKTRONIK</td>
+                <td th:if="${mesin.idKategori} ==5">FASHION</td>
+                <td th:if="${mesin.idKategori} ==6">KECANTIKAN & PERAWATAN DIRI</td>
+                <td th:if="${mesin.idKategori} ==7">FILM & MUSIK</td>
+                <td th:if="${mesin.idKategori} ==8">GAMING</td>
+                <td th:if="${mesin.idKategori} ==9">GADGET</td>
+                <td th:if="${mesin.idKategori} ==10">KESEHATAN</td>
+                <td th:if="${mesin.idKategori} ==11">RUMAH TANGGA</td>
+                <td th:if="${mesin.idKategori} ==12">FURNITURE</td>
+                <td th:if="${mesin.idKategori} ==13">ALAT & PERANGKAT KERAS</td>
+                <td th:if="${mesin.idKategori} ==14">WEDDING</td>
                 <td th:text="${mesin.tanggalDibuat}"></td>
                 <td th:text="${mesin.kapasitas}"></td>
             </tr>
             </tbody>
         </table>
 
-
+</div>
 </body>
 
 </html>
