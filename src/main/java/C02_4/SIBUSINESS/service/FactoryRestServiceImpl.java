@@ -40,7 +40,7 @@ public class FactoryRestServiceImpl implements FactoryRestService{
             String nama = itr.getNama();
             itr.setNama(nama);
 
-            int kategori = itr.getIdKategori();
+            String kategori = itr.getIdKategori();
             itr.setIdKategori(kategori);
 
             Date tanggal = itr.getTanggalDibuat();
