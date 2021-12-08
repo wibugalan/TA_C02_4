@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api-docs").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/factory/mesin").hasAnyAuthority("Manager Business","Staff Product")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
