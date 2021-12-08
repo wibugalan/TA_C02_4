@@ -1,26 +1,58 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
     <meta charset="UTF-8">
-    <title> Home </title>
+    <title> SI-BUSINESS </title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+<style>
+    .judul {
+        color: #0D0603;
+        font-weight:800;
+    }
+
+    thead {
+        background-color: #91684A;
+        color: white;
+        white-space: nowrap
+    }
+
+    .primary-button {
+        background-color: #91684A;
+        color: white;
+    }
+
+    .secondary-button {
+        background-color: #FFDF91;
+        color: black;
+    }
+    .atas {
+        margin-top: 32px;
+    }
+    .fa {
+        margin-right: 5px;
+    }
+    table tr th {
+        width: 140px;
+
+    }
+</style>
 
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<div class="container">
-    <h2>Daftar Seluruh Bioskop</h2>
+<div class="container atas">
+    <h2 class="judul">Daftar Seluruh Mesin</h2>
 
         <table class="table">
             <thead>
             <tr>
                 <th>Id Mesin </th>
                 <th>Nama</th>
-                <th>Id Kategori</th>
+                <th>Kategori</th>
                 <th>Tanggal Dibuat</th>
-                <th>Kapasitas</th>
+                <th>Kapasitas Mesin</th>
 
             </tr>
             </thead>

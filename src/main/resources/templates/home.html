@@ -34,7 +34,10 @@
 <!--        <a th:href="@{/user/viewall}" class="mx-2 btn btn-warning">Lihat Semua User</a>-->
 <!--        <a th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambahkan User Baru</a>-->
     </div>
+<div>
+    <a sec:authorize="hasAnyAuthority('Manager Business','Staff Product')" th:href="@{/factory/mesin}" class="mx-2 btn btn-warning">List Mesin</a>
 
+</div>
 
 </body>
 
