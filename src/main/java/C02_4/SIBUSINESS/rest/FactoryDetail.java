@@ -12,16 +12,16 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FactoryDetail {
 
-    @JsonProperty("id_mesin")
+    @JsonProperty("idMesin")
     private Integer idMesin;
 
     @JsonProperty("nama")
     private String nama;
 
-    @JsonProperty("kategori")
-    private String kategori;
+    @JsonProperty("idKategori")
+    private Integer idKategori;
 
-    @JsonProperty("tanggal_dibuat")
+    @JsonProperty("tanggalDibuat")
     private Date tanggalDibuat;
 
     @JsonProperty("kapasitas")
@@ -43,12 +43,12 @@ public class FactoryDetail {
         this.nama = nama;
     }
 
-    public String getIdKategori() {
-        return kategori;
+    public Integer getIdKategori() {
+        return idKategori;
     }
 
-    public void setIdKategori(String idKategori) {
-        this.kategori = idKategori;
+    public void setIdKategori(Integer idKategori) {
+        this.idKategori = idKategori;
     }
 
     public Date getTanggalDibuat() {
