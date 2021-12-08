@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Home </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <h2>Daftar Seluruh Bioskop</h2>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id Mesin </th>
+                <th>Nama</th>
+                <th>Id Kategori</th>
+                <th>Tanggal Dibuat</th>
+                <th>Kapasitas</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mesin : ${listMesin}">
+                <td th:text="${mesin.idMesin}"></td>
+                <td th:text="${mesin.nama}"></td>
+                <td th:text="${mesin.idKategori}"></td>
+                <td th:text="${mesin.tanggalDibuat}"></td>
+                <td th:text="${mesin.kapasitas}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+</body>
+
+</html>
