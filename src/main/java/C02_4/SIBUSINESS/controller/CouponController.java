@@ -18,6 +18,7 @@ public class CouponController {
     @Autowired
     CouponService couponService;
 
+
     @GetMapping("coupon/viewallRequest")
     public String liatDaftarCouponRequest(Model model){
         List<CouponModel> hasil = couponService.getListCouponRequest();
