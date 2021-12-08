@@ -26,18 +26,6 @@ public class FactoryRestServiceImpl implements FactoryRestService{
         this.webClient = webClient.baseUrl(Setting.factoryUrl).build();
     }
 
-    // hasilnya json
-    @Override
-    public Flux<FactoryDetail> getMesinJson(){
-        return this.webClient.get().uri("/rest/mesin").retrieve().bodyToFlux(FactoryDetail.class);
-    }
-
-    // hasilnya html
-    @Override
-    public Mono<String> getMesinJson2(){
-        return this.webClient.get().uri("/rest/mesin").retrieve().bodyToMono(String.class);
-    }
-
     @Override
     public List<FactoryDetail> mesin() throws JsonProcessingException {
         Mono<String> uriWeb = this.webClient.get().uri("/rest/mesin").retrieve().bodyToMono(String.class);
@@ -67,24 +55,6 @@ public class FactoryRestServiceImpl implements FactoryRestService{
 
 
     }
-
-//    @Override
-//    public List<FactoryDetail> getListMesin() throws Exception {
-//        List<FactoryDetail> allPlants = new ArrayList<FactoryDetail>();
-//        Mono<String> uriWeb = this.webClient.get().uri("/rest/mesin").retrieve().bodyToMono(String.class);
-//
-//        String rawJson = uriWeb.toString();
-//
-//        for(FactoryDetail x : response.getQuote()){
-//            JSONObject jsonPlant = plants.getJSONObject(i);
-//            FactoryDetail plant = new FactoryDetail();
-//            int guid = jsonPlant.getInt("id_mesin");
-//            plant.setIdMesin(guid);
-//            allPlants.add(plant);
-//        }
-//        return allPlants;
-//
-//    }
 
 
 

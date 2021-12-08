@@ -21,27 +21,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Controller
-@RequestMapping("/api/v1")
+@RequestMapping("/factory")
 public class FactoryController {
 
     @Autowired
     private FactoryRestService factoryRestService;
-
-// hasilnya json
-//    @GetMapping("/mesin")
-//    public Flux<FactoryDetail> listMesin(Model model){
-//        Flux<FactoryDetail> listMesin = factoryRestService.getMesinJson();
-//        return listMesin;
-//    }
-
-////    hasilnya html
-//    @GetMapping("/mesin")
-//    public String listMesin(Model model){
-//        Mono<String> listMesin2 = factoryRestService.getMesinJson2();
-//        String listMesin = listMesin2.block();
-//        model.addAttribute("listMesin", listMesin);
-//        return "viewall-mesin";
-//    }
 
     @GetMapping("/mesin")
     public String listMesin(Model model) throws JsonProcessingException {
