@@ -57,5 +57,24 @@ public class FactoryRestServiceImpl implements FactoryRestService{
     }
 
 
+    @Override
+    public List<FactoryDetail> filterMesin(Long idKategori) throws JsonProcessingException {
+        Mono<String> uriWeb = this.webClient.get().uri("/list-mesin").retrieve().bodyToMono(String.class);
+        List<FactoryDetail> allPlants = new ArrayList<FactoryDetail>();
+        ObjectMapper mapper = new ObjectMapper();
+        FactoryDetail[] jsonObj = mapper.readValue(uriWeb.block(), FactoryDetail[].class);
+
+        String x = idKategori.toString();
+
+        for (FactoryDetail itr : jsonObj) {
+            if (itr.getIdKategori().toString().equals(x)){
+                allPlants.add(itr);
+            }
+        }
+
+        return allPlants;
+    }
+
+
 
 }

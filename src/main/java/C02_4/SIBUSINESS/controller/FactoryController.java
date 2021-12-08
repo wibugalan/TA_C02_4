@@ -17,8 +17,12 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import static java.util.Arrays.asList;
 
 @Controller
 @RequestMapping("/factory")
@@ -32,6 +36,20 @@ public class FactoryController {
         List<FactoryDetail> listMesin = factoryRestService.mesin();
         model.addAttribute("listMesin", listMesin);
         return "viewall-mesin";
+    }
+
+
+    @RequestMapping(value="/mesin", method=RequestMethod.GET, params= {"idKategori"})
+    public String listMesin(
+            @RequestParam(required = false,value = "idKategori") Long idKategori,
+            Model model) throws JsonProcessingException {
+
+            List<FactoryDetail> listMesin = factoryRestService.filterMesin(idKategori);
+            model.addAttribute("listMesin", listMesin);
+            return "viewall-mesin";
+
+
+
     }
 
 
