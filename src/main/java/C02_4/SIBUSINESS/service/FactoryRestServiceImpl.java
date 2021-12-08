@@ -28,7 +28,7 @@ public class FactoryRestServiceImpl implements FactoryRestService{
 
     @Override
     public List<FactoryDetail> mesin() throws JsonProcessingException {
-        Mono<String> uriWeb = this.webClient.get().uri("/rest/mesin").retrieve().bodyToMono(String.class);
+        Mono<String> uriWeb = this.webClient.get().uri("/list-mesin").retrieve().bodyToMono(String.class);
         List<FactoryDetail> allPlants = new ArrayList<FactoryDetail>();
         ObjectMapper mapper = new ObjectMapper();
         FactoryDetail[] jsonObj = mapper.readValue(uriWeb.block(), FactoryDetail[].class);
