@@ -10,6 +10,7 @@ import java.util.List;
 public interface FactoryRestService {
 
     List<FactoryDetail> mesin() throws JsonProcessingException;
+    List<FactoryDetail> filterMesin(Long idKategori) throws JsonProcessingException;
 }
 
 
