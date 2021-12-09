@@ -43,7 +43,7 @@ public class UserModel implements Serializable{
     @Size(max = 200)
     @Column(name="password", nullable = false)
     private String password;
-    
+
 
     // Relasi dengan Role
     @ManyToOne(fetch = FetchType.EAGER)
@@ -56,7 +56,7 @@ public class UserModel implements Serializable{
     @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CouponModel> listCoupon;
 
-//    Relasi dengan Item Factory
+    //    Relasi dengan Item Factory
     @OneToMany(mappedBy = "approver", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ItemFactoryModel> listItemFactory;
 

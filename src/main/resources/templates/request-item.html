@@ -70,7 +70,7 @@
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.category}"></td>
                 <td th:text="${item.cluster}"></td>
-                <td th:text="${item.status}"></td>
+                <td th:if="${item.status} == 0">Menunggu Persetujuan</td>
 
                 <!--                <td sec:authorize="hasAuthority('Manager Business')">-->
                 <!--                <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAuthority('Staff Marketing')">-->
