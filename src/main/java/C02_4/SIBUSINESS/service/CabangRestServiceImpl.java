@@ -15,7 +15,7 @@ public class CabangRestServiceImpl implements CabangRestService{
     private final WebClient webClient;
 
     public CabangRestServiceImpl(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("uapi nadya shelim").build();
+        this.webClient = webClientBuilder.baseUrl("siretail-6.herokuapp.com").build();
     }
 
     @Override
