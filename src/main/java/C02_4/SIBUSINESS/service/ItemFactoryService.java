@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ItemFactoryService {
     List<ItemFactoryModel> getItemRequestList();
+    void deleteItem (ItemFactoryModel item);
+    ItemFactoryModel updateItem(ItemFactoryModel item);
 }
