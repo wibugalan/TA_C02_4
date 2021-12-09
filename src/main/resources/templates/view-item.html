@@ -45,29 +45,54 @@
 <div class="container atas">
     <h2 class="judul">Detail Item</h2>
 
-    <table class="table atas">
-        <thead>
+<!--    <table class="table atas">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>UUID</th>-->
+<!--            <th>Nama</th>-->
+<!--            <th>Harga</th>-->
+<!--            <th>Stok</th>-->
+<!--            <th>Kategori</th>-->
+<!--            <th></th>-->
+
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+
+<!--        <tr th:each="item : ${listItem}">-->
+<!--            <td th:text="${item.uuid}"></td>-->
+<!--            <td th:text="${item.nama}"></td>-->
+<!--            <td th:text="${item.harga}"></td>-->
+<!--            <td th:text="${item.stok}"></td>-->
+<!--            <td th:text="${item.kategori}"></td>-->
+
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+    <table style="width:95%">
         <tr>
-            <th>UUID</th>
-            <th>Nama</th>
-            <th>Harga</th>
-            <th>Stok</th>
-            <th>Kategori</th>
-            <th></th>
-
+            <th>UUID:</th>
+            <td th:text="${listItem.uuid}"></td>
         </tr>
-        </thead>
-        <tbody>
-
-        <tr th:each="item : ${listItem}">
-            <td th:text="${item.uuid}"></td>
-            <td th:text="${item.nama}"></td>
-            <td th:text="${item.harga}"></td>
-            <td th:text="${item.stok}"></td>
-            <td th:text="${item.kategori}"></td>
-
+        <tr>
+            <th>Nama :</th>
+            <td th:text="${listItem.nama}"></td>
         </tr>
-        </tbody>
+        <tr>
+            <th>Harga :</th>
+            <td th:text="${listItem.harga}"></td>
+        </tr>
+        <tr>
+            <th>Stok :</th>
+            <td th:text="${listItem.stok}"></td>
+        </tr>
+        <tr>
+            <th>Kategori :</th>
+            <td th:text="${listItem.kategori}"></td>
+        </tr>
+
+
     </table>
 
     <a class="btn btn-sm btn-danger" th:href="@{/item/}">Kembali</a>
