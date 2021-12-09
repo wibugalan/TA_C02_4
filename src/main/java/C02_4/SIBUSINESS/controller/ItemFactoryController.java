@@ -3,6 +3,7 @@ package C02_4.SIBUSINESS.controller;
 import C02_4.SIBUSINESS.model.ItemFactoryModel;
 import C02_4.SIBUSINESS.rest.FactoryDetail;
 import C02_4.SIBUSINESS.rest.ItemDetail;
+import C02_4.SIBUSINESS.rest.ResultItemDetail;
 import C02_4.SIBUSINESS.service.ItemFactoryRestService;
 import C02_4.SIBUSINESS.service.ItemFactoryService;
 import C02_4.SIBUSINESS.service.UserService;
@@ -37,7 +38,7 @@ public class ItemFactoryController {
 
     @GetMapping("/")
     public String listItem(Model model) throws JsonProcessingException {
-        List<ItemDetail> listItem = itemFactoryRestService.item();
+        List<ResultItemDetail> listItem = itemFactoryRestService.item();
         model.addAttribute("listItem", listItem);
         return "viewall-item";
     }

@@ -70,7 +70,7 @@ public JsonNode getResult() {
     public void setResult(JsonNode result) {
         this.result = result;
     }
-    
+
     public Integer getStatus() {
         return status;
     }

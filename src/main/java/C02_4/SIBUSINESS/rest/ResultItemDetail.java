@@ -2,7 +2,7 @@ package C02_4.SIBUSINESS.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Resultt {
+public class ResultItemDetail {
     public String getUuid() {
         return uuid;
     }

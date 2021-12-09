@@ -44,10 +44,29 @@
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container atas">
     <h2 class="judul">Daftar Seluruh Item</h2>
-<!--    <td th:text="${listItem.status}"></td>-->
+    <a class="btn btn-sm btn-warning" th:href="@{/item/requestItem}" sec:authorize="hasAuthority('Manager Business')">Daftar Request Item Baru</a>
 
+    <table class="table atas">
+        <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Harga</th>
+            <th>Stok</th>
+            <th>Kategori</th>
+            <th></th>
 
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${listItem}">
+            <td th:text="${item.nama}"></td>
+            <td th:text="${item.harga}"></td>
+            <td th:text="${item.stok}"></td>
+            <td th:text="${item.kategori}"></td>
 
+        </tr>
+        </tbody>
+    </table>
 
 </div>
 </body>
