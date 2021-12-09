@@ -19,4 +19,14 @@ public class ItemFactoryServiceImpl implements ItemFactoryService{
 
     @Override
     public List<ItemFactoryModel> getItemRequestList(){ return itemFactoryDB.findAllBystatus(0);}
+
+    @Override
+    public void deleteItem (ItemFactoryModel item){
+        itemFactoryDB.delete(item);
+    }
+
+    @Override
+    public ItemFactoryModel updateItem(ItemFactoryModel item){
+        return itemFactoryDB.save(item);
+    }
 }

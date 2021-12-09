@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface ItemFactoryDB extends JpaRepository<ItemFactoryModel, Long> {
     List<ItemFactoryModel> findAllBystatus(Integer status);
+    ItemFactoryModel getById(Long id);
 
 }
