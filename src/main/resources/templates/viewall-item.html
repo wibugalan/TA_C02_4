@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="UTF-8">
+    <title> SI-BUSINESS </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<style>
+    .judul {
+        color: #0D0603;
+        font-weight:800;
+    }
+
+    thead {
+        background-color: #91684A;
+        color: white;
+        white-space: nowrap
+    }
+
+    .primary-button {
+        background-color: #91684A;
+        color: white;
+    }
+
+    .secondary-button {
+        background-color: #FFDF91;
+        color: black;
+    }
+    .atas {
+        margin-top: 32px;
+    }
+    .fa {
+        margin-right: 5px;
+    }
+    table tr th {
+        width: 140px;
+
+    }
+</style>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container atas">
+    <h2 class="judul">Daftar Seluruh Item</h2>
+    <a class="btn btn-sm btn-warning" th:href="@{/item/requestItem}" sec:authorize="hasAuthority('Manager Business')">Daftar Request Item Baru</a>
+
+    <table class="table atas">
+        <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Harga</th>
+            <th>Stok</th>
+            <th>Kategori</th>
+            <th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${listItem}">
+            <td th:text="${item.nama}"></td>
+            <td th:text="${item.harga}"></td>
+            <td th:text="${item.stok}"></td>
+            <td th:text="${item.kategori}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+
+</html>
