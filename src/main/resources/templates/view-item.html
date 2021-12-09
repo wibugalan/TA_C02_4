@@ -43,13 +43,12 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container atas">
-    <h2 class="judul">Daftar Seluruh Item</h2>
-    <a class="btn btn-sm btn-warning" th:href="@{/item/requestItem}" sec:authorize="hasAuthority('Manager Business')">Daftar Request Item Baru</a>
+    <h2 class="judul">Detail Item</h2>
 
     <table class="table atas">
         <thead>
         <tr>
-            <th>No.</th>
+            <th>UUID</th>
             <th>Nama</th>
             <th>Harga</th>
             <th>Stok</th>
@@ -60,8 +59,8 @@
         </thead>
         <tbody>
 
-        <tr th:each="item, iterationStatus : ${listItem}">
-            <td th:text="${iterationStatus.count}"></td>
+        <tr th:each="item : ${listItem}">
+            <td th:text="${item.uuid}"></td>
             <td th:text="${item.nama}"></td>
             <td th:text="${item.harga}"></td>
             <td th:text="${item.stok}"></td>
@@ -70,6 +69,9 @@
         </tr>
         </tbody>
     </table>
+
+    <a class="btn btn-sm btn-danger" th:href="@{/item/}">Kembali</a>
+
 
 </div>
 </body>

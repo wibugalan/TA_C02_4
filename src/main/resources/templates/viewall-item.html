@@ -51,8 +51,8 @@
         <tr>
             <th>No.</th>
             <th>Nama</th>
-            <th>Harga</th>
-            <th>Stok</th>
+<!--            <th>Harga</th>-->
+<!--            <th>Stok</th>-->
             <th>Kategori</th>
             <th>Update</th>
 
@@ -63,13 +63,13 @@
         <tr th:each="item, iterationStatus : ${listItem}">
             <td th:text="${iterationStatus.count}"></td>
             <td th:text="${item.nama}"></td>
-            <td th:text="${item.harga}"></td>
-            <td th:text="${item.stok}"></td>
+<!--            <td th:text="${item.harga}"></td>-->
+<!--            <td th:text="${item.stok}"></td>-->
             <td th:text="${item.kategori}"></td>
 
             <td>
-                <form th:action="@{/item/detail}" method="GET">
-                    <input type="hidden" th:value="${item.uuid}" name="uuid" />
+                <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+<!--                    <input type="hidden" th:value="${item.uuid}" name="uuid" />-->
                     <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat Detail</button>
                 </form>
             </td>

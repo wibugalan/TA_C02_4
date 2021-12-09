@@ -11,8 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +40,18 @@ public class ItemFactoryController {
         List<ResultItemDetail> listItem = itemFactoryRestService.item();
         model.addAttribute("listItem", listItem);
         return "viewall-item";
+    }
+
+    @GetMapping("/detail/{uuid}")
+    public String viewDetailBarang(
+            @PathVariable String uuid,
+            Model model) throws JsonProcessingException {
+        ResultItemDetail listItem = itemFactoryRestService.detailItem(uuid);
+        model.addAttribute("listItem", listItem);
+        return "view-item";
+
+
+
     }
 
 
