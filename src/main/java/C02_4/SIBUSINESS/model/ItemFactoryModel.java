@@ -51,12 +51,12 @@ public class ItemFactoryModel implements Serializable{
     private Integer price;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Integer category;
 
-    @NotNull
     @Size(max = 50)
-    @Column(name = "cluster", nullable = false)
+    @Column(name = "cluster", nullable = true)
+    @JsonIgnore
     private String cluster;
 
     // Relasi dengan user
