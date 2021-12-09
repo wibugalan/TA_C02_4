@@ -4,23 +4,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 @Getter @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FactoryDetail {
 
-
-    @JsonProperty("id_mesin")
+    @JsonProperty("idMesin")
     private Integer idMesin;
 
     @JsonProperty("nama")
     private String nama;
 
-    @JsonProperty("id_kategori")
+    @JsonProperty("idKategori")
     private Integer idKategori;
 
-    @JsonProperty("tanggal_dibuat")
+    @JsonProperty("tanggalDibuat")
     private Date tanggalDibuat;
 
     @JsonProperty("kapasitas")

@@ -70,13 +70,13 @@
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.category}"></td>
                 <td th:text="${item.cluster}"></td>
-                <td th:text="${item.status}"></td>
+                <td th:if="${item.status} == 0">Menunggu Persetujuan</td>
 
                 <!--                <td sec:authorize="hasAuthority('Manager Business')">-->
                 <!--                <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAuthority('Staff Marketing')">-->
                 <td style="display: flex; align-items: center; justify-content: center;">
-                    <span ><a class="btn btn-sm btn-primary secondary-button mr-1" th:href="@{/}">Setuju</a></span>
-                    <span><a class="btn btn-sm btn-primary secondary-button ml-1" th:href="@{/}">Hapus</a></span>
+                    <span ><a class="btn btn-sm btn-primary secondary-button mr-1" th:href="@{requested/accept/} +${item.id}" >Setuju</a></span>
+                    <span><a class="btn btn-sm btn-primary secondary-button ml-1" th:href="@{requested/reject/} +${item.id}">Tolak</a></span>
                 </td>
 
             </tr>

@@ -8,13 +8,9 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 public interface FactoryRestService {
-    // hasilnya json
-    Flux<FactoryDetail> getMesinJson();
-
-    // hasilnya html
-    Mono<String> getMesinJson2();
 
     List<FactoryDetail> mesin() throws JsonProcessingException;
+    List<FactoryDetail> filterMesin(Long idKategori) throws JsonProcessingException;
 }
 
 
