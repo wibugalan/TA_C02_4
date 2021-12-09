@@ -13,4 +13,5 @@ public interface ItemFactoryRestService {
     List<ResultItemDetail> item() throws JsonProcessingException;
     ResultItemDetail detailItem(String uuid) throws JsonProcessingException;
 
+
 }
