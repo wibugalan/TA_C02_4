@@ -38,6 +38,10 @@
             <a class="nav-item nav-link text-white" th:href="@{/}" th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'font-weight-bold' : ''}">
                 Home<span class="st-only"></span>
             </a>
+
+            <a class="nav-item nav-link text-white" th:href="@{/item/requestItem}" th:classappend="${#httpServletRequest.getRequestURI() == '/item' ? 'font-weight-bold' : ''}">
+                Item<span class="st-only"></span>
+            </a>
         </ul>
         <ul class="navbar-nav pull-right">
 
