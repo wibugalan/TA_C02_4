@@ -12,5 +12,6 @@ public interface ItemFactoryRestService {
     ItemFactoryModel createItem(ItemFactoryModel item);
     List<ResultItemDetail> item() throws JsonProcessingException;
     ResultItemDetail detailItem(String uuid) throws JsonProcessingException;
+    List<ResultItemDetail> itemByCategory(String kategori) throws JsonProcessingException;
 
 }
