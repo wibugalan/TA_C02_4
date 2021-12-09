@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -40,8 +41,14 @@
             </a>
 
             <a class="nav-item nav-link text-white" th:href="@{/item/}" th:classappend="${#httpServletRequest.getRequestURI() == '/item' ? 'font-weight-bold' : ''}">
-                Item<span class="st-only"></span>
+                Daftar Item<span class="st-only"></span>
             </a>
+
+            <a class="nav-item nav-link text-white" sec:authorize="hasAnyAuthority('Manager Business','Staff Product')" th:href="@{/factory/mesin}" th:classappend="${#httpServletRequest.getRequestURI() == '/factory/mesin' ? 'font-weight-bold' : ''}">
+                Daftar Mesin<span class="st-only"></span>
+            </a>
+
+
         </ul>
         <ul class="navbar-nav pull-right">
 
