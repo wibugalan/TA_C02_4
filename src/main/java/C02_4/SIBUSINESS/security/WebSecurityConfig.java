@@ -25,8 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
-//                .antMatchers("/user/add").hasAnyAuthority("Manager Business")
-                .antMatchers("/user/add").permitAll()
+                .antMatchers("/user/add").hasAnyAuthority("Manager Business")
+//                .antMatchers("/user/add").permitAll()
                 .antMatchers("/user/viewall").hasAnyAuthority("Manager Business")
                 .antMatchers("/user/update/**").hasAnyAuthority("Manager Business")
                 .antMatchers("/api/item/**").hasAnyAuthority("Manager Business")
@@ -60,20 +60,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        auth.inMemoryAuthentication()
-                .passwordEncoder(encoder)
-                .withUser("user").password(encoder.encode("1234567Ta!"))
-                .roles("Manager Business");
-    }
-
-
 //    @Autowired
-//    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
+//        auth.inMemoryAuthentication()
+//                .passwordEncoder(encoder)
+//                .withUser("user").password(encoder.encode("1234567Ta!"))
+//                .roles("Manager Business");
 //    }
+
+
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
+    }
 
 }
