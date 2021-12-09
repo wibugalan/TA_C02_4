@@ -24,11 +24,11 @@ public class ItemRestServiceImpl implements ItemRestService  {
     public Mono<BaseResponse> createItem(ItemDTO item) throws JsonProcessingException {
 //        ObjectMapper map = new ObjectMapper();
 //        String value = map.writeValueAsString(item);
-        System.out.println(item.getKategori());
-        System.out.println(item.getHarga());
-        System.out.println(item.getNama());
-        System.out.println(item.getStok());
-        System.out.println("INI TUTUP DEBUG");
+//        System.out.println(item.getKategori());
+//        System.out.println(item.getHarga());
+//        System.out.println(item.getNama());
+//        System.out.println(item.getStok());
+//        System.out.println("INI TUTUP DEBUG");
         Mono<BaseResponse> responseMono = this.webClient
                 .post()
                 .uri("api/item")
