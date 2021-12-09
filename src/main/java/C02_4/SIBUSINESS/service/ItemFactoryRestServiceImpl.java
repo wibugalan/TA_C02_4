@@ -36,8 +36,29 @@ public class ItemFactoryRestServiceImpl implements ItemFactoryRestService{
     }
 
     @Override
+    public ResultItemDetail detailItem(String uuid) throws JsonProcessingException {
+        Mono<String> uriWeb = this.webClient.get().uri("/api/item/" + uuid).retrieve().bodyToMono(String.class);
+
+        ResultItemDetail allPlants = new ResultItemDetail();
+        ObjectMapper mapper = new ObjectMapper();
+
+        ItemDetail jsonObj = mapper.readValue(uriWeb.block(), ItemDetail.class);
+        ResultItemDetail jsonObj2 = mapper.readValue(jsonObj.getResult().toString(), ResultItemDetail.class);
+
+        allPlants.setUuid(jsonObj2.getUuid());
+        allPlants.setNama(jsonObj2.getNama());
+        allPlants.setHarga(jsonObj2.getHarga());
+        allPlants.setStok(jsonObj2.getStok());
+        allPlants.setKategori(jsonObj2.getKategori());
+
+        System.out.println(jsonObj2.getNama());
+        return allPlants;
+    }
+
+    @Override
     public List<ResultItemDetail> item() throws JsonProcessingException {
         Mono<String> uriWeb = this.webClient.get().uri("/api/item").retrieve().bodyToMono(String.class);
+
         List<ResultItemDetail> allPlants = new ArrayList<ResultItemDetail>();
         ObjectMapper mapper = new ObjectMapper();
 
