@@ -34,5 +34,4 @@ public class ItemFactoryRestController {
             return itemFactoryRestService.createItem(item);
         }
     }
-
 }

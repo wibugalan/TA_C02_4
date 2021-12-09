@@ -1,19 +1,15 @@
 package C02_4.SIBUSINESS.service;
-import C02_4.SIBUSINESS.model.ItemModel;
-import C02_4.SIBUSINESS.repository.ItemDB;
 import C02_4.SIBUSINESS.rest.BaseResponse;
 import C02_4.SIBUSINESS.rest.ItemDTO;
 import C02_4.SIBUSINESS.rest.Setting;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import javax.transaction.Transactional;
-import java.util.List;
+
 @Service
 @Transactional
 public class ItemRestServiceImpl implements ItemRestService  {

@@ -1,31 +1,19 @@
 package C02_4.SIBUSINESS.controller;
 
 import C02_4.SIBUSINESS.model.ItemFactoryModel;
-import C02_4.SIBUSINESS.model.ItemModel;
 import C02_4.SIBUSINESS.model.UserModel;
 import C02_4.SIBUSINESS.repository.ItemFactoryDB;
 import C02_4.SIBUSINESS.repository.UserDB;
-import C02_4.SIBUSINESS.rest.BaseResponse;
 import C02_4.SIBUSINESS.rest.ItemDTO;
 import C02_4.SIBUSINESS.service.ItemFactoryService;
 import C02_4.SIBUSINESS.service.ItemRestService;
-import C02_4.SIBUSINESS.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.JsonEOFException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
-import javax.validation.Valid;
-import java.text.ParseException;
 
 @Controller
 @RequestMapping("/item")

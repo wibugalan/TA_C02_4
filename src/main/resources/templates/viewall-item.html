@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="UTF-8">
+    <title> SI-BUSINESS </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<style>
+    .judul {
+        color: #0D0603;
+        font-weight: 800;
+    }
+
+    thead {
+        background-color: #91684A;
+        color: white;
+        white-space: nowrap
+    }
+
+    .primary-button {
+        background-color: #91684A;
+        color: white;
+    }
+
+    .secondary-button {
+        background-color: #FFDF91;
+        color: black;
+    }
+
+    .atas {
+        margin-top: 32px;
+    }
+
+    .fa {
+        margin-right: 5px;
+    }
+
+    table tr th {
+        width: 140px;
+
+    }
+</style>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container atas">
+    <h2 class="judul">Daftar Seluruh Item</h2>
+    <a class="btn btn-sm btn-warning" th:href="@{/item/requestItem}"
+       sec:authorize="hasAuthority('Manager Business')">Daftar Request Item Baru</a>
+
+    <!--    tabel 1-->
+    <div th:if="*{listItem1.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem1[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem1}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 2-->
+    <div th:if="*{listItem2.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem2[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem2}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 3-->
+    <div th:if="*{listItem3.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem3[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem3}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 4-->
+    <div th:if="*{listItem4.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem4[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem4}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 5-->
+    <div th:if="*{listItem5.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem5[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem5}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 6-->
+    <div th:if="*{listItem6.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem6[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem6}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 7-->
+    <div th:if="*{listItem7.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem7[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem7}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 8-->
+    <div th:if="*{listItem8.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem8[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem8}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 9-->
+    <div th:if="*{listItem9.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem9[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem9}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 10-->
+    <div th:if="*{listItem10.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem10[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem10}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 11-->
+    <div th:if="*{listItem11.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem11[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem11}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 12-->
+    <div th:if="*{listItem12.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem12[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem12}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 13-->
+    <div th:if="*{listItem13.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem13[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem13}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--    tabel 14-->
+    <div th:if="*{listItem14.size() != 0}">
+        <h3 class="judul atas" th:text="${listItem14[0].kategori}"></h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterationStatus : ${listItem14}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${item.nama}"></td>
+                <td th:text="${item.kategori}"></td>
+                <td>
+                    <form th:action="@{/item/detail/} + ${item.uuid}" method="GET">
+                        <button type="submit" class="btn btn-sm btn-primary secondary-button">lihat
+                            Detail</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+</div>
+</body>
+
+</html>

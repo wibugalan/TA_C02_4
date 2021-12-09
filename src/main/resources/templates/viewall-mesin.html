@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="UTF-8">
+    <title> SI-BUSINESS </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<style>
+    .judul {
+        color: #0D0603;
+        font-weight:800;
+    }
+
+    thead {
+        background-color: #91684A;
+        color: white;
+        white-space: nowrap
+    }
+
+    .primary-button {
+        background-color: #91684A;
+        color: white;
+    }
+
+    .secondary-button {
+        background-color: #FFDF91;
+        color: black;
+    }
+    .atas {
+        margin-top: 32px;
+    }
+    .fa {
+        margin-right: 5px;
+    }
+    table tr th {
+        width: 140px;
+
+    }
+</style>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container atas">
+    <h2 class="judul">Daftar Seluruh Mesin</h2>
+
+    <form th:action="@{/factory/mesin}" method="GET">
+        <thead>
+        <tr>
+            <td> Pilih Kategori </td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+            <td>
+                <div>
+                    <select name="idKategori" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="1">BUKU</option>
+                        <option value="2">DAPUR</option>
+                        <option value="3">MAKANAN & MINUMAN</option>
+                        <option value="4">ELEKTRONIK</option>
+                        <option value="5">FASHION</option>
+                        <option value="6">KECANTIKAN & PERAWATAN DIRI</option>
+                        <option value="7">FILM & MUSIK</option>
+                        <option value="8">GAMING</option>
+                        <option value="9">GADGET</option>
+                        <option value="10">KESEHATAN</option>
+                        <option value="11">RUMAH TANGGA</option>
+                        <option value="12">FURNITURE</option>
+                        <option value="13">ALAT & PERANGKAT KERAS</option>
+                        <option value="14">WEDDING</option>
+                    </select>
+                </div>
+
+
+            </td>
+
+
+            <td>
+                <button class="btn btn-warning" type="submit"> Filter </button>
+                <a class="btn btn-sm btn-danger" th:href="@{/factory/mesin}">Hapus Filter</a>
+            </td>
+        </tr>
+        </tbody>
+    </form>
+
+        <table class="table atas">
+            <thead>
+            <tr>
+                <th>Id Mesin </th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Tanggal Dibuat</th>
+                <th>Kapasitas Mesin</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mesin : ${listMesin}">
+                <td th:text="${mesin.idMesin}"></td>
+                <td th:text="${mesin.nama}"></td>
+<!--                <td th:text="${mesin.idKategori}"></td>-->
+                <td th:if="${mesin.idKategori} ==1">BUKU</td>
+                <td th:if="${mesin.idKategori} ==2">DAPUR</td>
+                <td th:if="${mesin.idKategori} ==3">MAKANAN & MINUMAN</td>
+                <td th:if="${mesin.idKategori} ==4">ELEKTRONIK</td>
+                <td th:if="${mesin.idKategori} ==5">FASHION</td>
+                <td th:if="${mesin.idKategori} ==6">KECANTIKAN & PERAWATAN DIRI</td>
+                <td th:if="${mesin.idKategori} ==7">FILM & MUSIK</td>
+                <td th:if="${mesin.idKategori} ==8">GAMING</td>
+                <td th:if="${mesin.idKategori} ==9">GADGET</td>
+                <td th:if="${mesin.idKategori} ==10">KESEHATAN</td>
+                <td th:if="${mesin.idKategori} ==11">RUMAH TANGGA</td>
+                <td th:if="${mesin.idKategori} ==12">FURNITURE</td>
+                <td th:if="${mesin.idKategori} ==13">ALAT & PERANGKAT KERAS</td>
+                <td th:if="${mesin.idKategori} ==14">WEDDING</td>
+                <td th:text="${mesin.tanggalDibuat}"></td>
+                <td th:text="${mesin.kapasitas}"></td>
+<!--                end-->
+            </tr>
+            </tbody>
+        </table>
+
+</div>
+</body>
+
+</html>
