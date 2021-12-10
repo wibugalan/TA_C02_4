@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/user/add").permitAll()
                 .antMatchers("/user/viewall").hasAnyAuthority("Manager Business")
                 .antMatchers("/user/update/**").hasAnyAuthority("Manager Business")
-                .antMatchers("/api/item/**").hasAnyAuthority("Manager Business")
+                .antMatchers("/api/item/**").permitAll()
                 .antMatchers("/item/requestItem/**").hasAnyAuthority("Manager Business")
                 .antMatchers("/api/coupon/**").permitAll()
                 .antMatchers("/api-docs").permitAll()
@@ -60,16 +60,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        auth.inMemoryAuthentication()
-                .passwordEncoder(encoder)
-                .withUser("user").password(encoder.encode("1234567Ta!"))
-                .roles("Manager Business");
-    }
-
-
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//        auth.inMemoryAuthentication()
+//                .passwordEncoder(encoder)
+//                .withUser("user").password(encoder.encode("1234567Ta!"))
+//                .roles("Manager Business");
+//    }
+//
+//
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
