@@ -30,6 +30,7 @@
         <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/viewall}" class="mx-2 btn btn-warning">Lihat Semua User</a>
         <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambahkan User Baru</a>
         <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/item/requestItem}" class="mx-2 btn btn-outline-warning">Lihat Requested Item</a>
+        <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/cabang/add}" class="mx-2 btn btn-outline-warning">Buat Permintaan Pembukaan Cabang</a>
 
         <!--uncomment kalau ingin mengecek tombol sudah bisa atau belum-->
 <!--        <a th:href="@{/user/viewall}" class="mx-2 btn btn-warning">Lihat Semua User</a>-->
