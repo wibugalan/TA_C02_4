@@ -31,7 +31,6 @@ public class ItemFactoryRestServiceImpl implements ItemFactoryRestService{
 
     @Override
     public ItemFactoryModel createItem(ItemFactoryModel item){
-
         return itemFactoryDB.save(item);
     }
 
@@ -62,9 +61,14 @@ public class ItemFactoryRestServiceImpl implements ItemFactoryRestService{
         List<ResultItemDetail> allPlants = new ArrayList<ResultItemDetail>();
         ObjectMapper mapper = new ObjectMapper();
 
+        List<String> listKategori = new ArrayList<String>();
+
         ItemDetail jsonObj = mapper.readValue(uriWeb.block(), ItemDetail.class);
         ResultItemDetail[] jsonObj2 = mapper.readValue(jsonObj.getResult().toString(), ResultItemDetail[].class);
 
+
+
+        // Add all item
         for (ResultItemDetail itr : jsonObj2) {
             String uuid = itr.getUuid();
             itr.setUuid(uuid);
@@ -83,6 +87,48 @@ public class ItemFactoryRestServiceImpl implements ItemFactoryRestService{
 
             allPlants.add(itr);
         }
+
+
+        return allPlants;
+
+
+
+    }
+
+    @Override
+    public List<ResultItemDetail> itemByCategory(String kategori) throws JsonProcessingException {
+        Mono<String> uriWeb = this.webClient.get().uri("/api/item/kategori/" + kategori).retrieve().bodyToMono(String.class);
+
+        List<ResultItemDetail> allPlants = new ArrayList<ResultItemDetail>();
+        ObjectMapper mapper = new ObjectMapper();
+
+        List<String> listKategori = new ArrayList<String>();
+
+        ItemDetail jsonObj = mapper.readValue(uriWeb.block(), ItemDetail.class);
+        ResultItemDetail[] jsonObj2 = mapper.readValue(jsonObj.getResult().toString(), ResultItemDetail[].class);
+
+
+        // Add all item
+        for (ResultItemDetail itr : jsonObj2) {
+                String uuid = itr.getUuid();
+                itr.setUuid(uuid);
+
+                String nama = itr.getNama();
+                itr.setNama(nama);
+
+                Integer harga = itr.getHarga();
+                itr.setHarga(harga);
+
+                Integer stok = itr.getStok();
+                itr.setStok(stok);
+
+                String kategorii = itr.getKategori();
+                itr.setKategori(kategorii);
+
+                allPlants.add(itr);
+            }
+
+
         return allPlants;
 
 
