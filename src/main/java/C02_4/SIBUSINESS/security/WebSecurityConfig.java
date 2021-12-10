@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/user/add").hasAnyAuthority("Manager Business")
-//                .antMatchers("/user/add").permitAll()
+                .antMatchers("/user/add").permitAll()
                 .antMatchers("/user/viewall").hasAnyAuthority("Manager Business")
                 .antMatchers("/user/update/**").hasAnyAuthority("Manager Business")
                 .antMatchers("/api/item/**").permitAll()
@@ -68,8 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .withUser("user").password(encoder.encode("1234567Ta!"))
 //                .roles("Manager Business");
 //    }
-//
-//
+
+
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
