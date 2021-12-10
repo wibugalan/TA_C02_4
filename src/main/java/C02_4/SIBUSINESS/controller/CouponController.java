@@ -3,6 +3,7 @@ import C02_4.SIBUSINESS.model.CouponModel;
 import C02_4.SIBUSINESS.model.CouponTypeModel;
 import C02_4.SIBUSINESS.model.RoleModel;
 import C02_4.SIBUSINESS.model.UserModel;
+import C02_4.SIBUSINESS.repository.CouponDB;
 import C02_4.SIBUSINESS.repository.UserDB;
 import C02_4.SIBUSINESS.service.CouponService;
 import C02_4.SIBUSINESS.service.CouponTypeService;
@@ -32,11 +33,21 @@ public class CouponController {
     UserDB userDB;
 
     @Autowired
+    CouponDB couponDB;
+
+    @Autowired
     CouponTypeService couponTypeService;
+
+    @GetMapping("/viewall")
+    public String listCoupon(Model model){
+        List<CouponModel> listCoupon = couponDB.findAll();
+        model.addAttribute("listCoupon", listCoupon);
+        return "viewall-coupon";
+    }
 
     @GetMapping("/update/{id}")
     private String updateCouponFormPage(
-            @RequestParam(value = "id") Long id,
+            @PathVariable Long id,
             Model model)
     {
         CouponModel coupon = couponService.getCouponById(id);

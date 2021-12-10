@@ -2,117 +2,68 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>SI-BUSINESS</title>
+    <title> SI-BUSINESS </title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 </head>
-<style>
-    .layout{
-        text-align: center;
-        padding-top: 50px;
-        padding-left: 450px;
-        padding-right: 450px;
-        padding-bottom: 50px;
-    }
-    .judul{
-        font-size: 27px;
-        color: black;
-        font-weight: 400;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
 
-    .box{
-        box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        padding-right: 7%;
-        padding-left: 7%;
-    }
-
-    .kanan{
-        text-align: right;
-        padding-bottom: 5%;
-    }
-
-
-    input, select {
-        width: 100%;
-        padding: 7px 15px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    .namafield{
-        text-align: left;
-        color: #4e555b;
-    }
-
-
-    .isi{
-        padding-right: 7%;
-        padding-left: 7%;
-        background-color: #ececec;
-    }
-
-    .disable{
-        background-color: #d3d3d3;
-    }
-</style>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<div class="layout">
-    <div class="judul">Form Update Coupon </h2></div>
-    <div class="shadow">
-        <form th:action="@{/coupon/update}"th:object="${coupon}" method = "POST">
-            <div class="isi">
-                <input type="hidden" th:field="*{id}"/>
-                <input type="hidden" th:field="*{kodeBarang}"/>
-                <br><br>
-                <div class="namafield">Nama Barang</div>
-                <input type="text" name="namaBarang" th:value="*{namaBarang}"/>
-                <br>
+<br>
+<br>
+ <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Update Coupon</div>
+                <div class="card-body">
+                    <form th:action="@{/coupon/update}"th:object="${coupon}" method = "POST">
+                        <div class="isi">
+                            <input type="hidden" th:field="*{id}"/>
+                            <input type="hidden" th:field="*{coupon_code}"/>
+                            <input type="hidden" th:field="*{status}"/>
 
-                <div class="namafield">Kode Barang</div>
-                <input type="text" name="kodeBarang" th:value="*{kodeBarang}" class="disable" disabled/>
-                <br>
+                            <div class="namafield">Coupon Name</div>
+                            <input  class="form-control" type="text" name="coupon_name" th:value="*{coupon_name}"/>
+                            <br>
 
-                <div class="namafield">Merk Barang</div>
-                <input type="text" name="merkBarang" th:value="*{merkBarang}" class="disable" disabled/>
-                <br>
+                            <div class="namafield">Coupon Code</div>
+                            <input type="text"   class="form-control" name="coupon_code" th:value="*{coupon_code}" disabled/>
+                            <br>
 
-                <div class="namafield">Stok Barang</div>
-                <input type="number" name="stok" th:value="*{stok}"/>
-                <br>
+                            <div class="namafield">Creator</div>
+                            <input type="text"   class="form-control" name="creator" th:value="{creator}" disabled/>
+                            <br>
 
-                <div class="namafield">Garansi Toko</div>
-                <input type="number" name="jumlahGaransi" th:value="*{jumlahGaransi}"/>
-                <br>
+                            <div class="namafield">Discount Amount</div>
+                            <input  class="form-control" type="text" name="discountAmount" th:value="*{discountAmount}" />
+                            <br>
 
-                <div class="namafield">Deskripsi</div>
-                <input type="text" name="deskripsiBarang" th:value="*{deskripsiBarang}"/>
-                <br>
+                            <div class="namafield">Expiry Date</div>
+                            <input  th:value="*{#dates.format(expiryDate, 'yyyy-MM-dd')}" class="form-control" type="date" name="expiryDate"/>
+                            <br>
 
-                <div class="namafield">Tipe Barang</div>
-                <select name="tipe.id" th:field="*{tipe.id}" class="disable" disabled>
-                    <option th:each="tipe : ${listTipe}"
-                            th:value="${tipe.id}"
-                            th:text="${tipe.nama}">
-                    </option>
-                </select>
-
-                <div class="namafield">Harga</div>
-                <input type="number" name="hargaBarang" th:value="*{hargaBarang}"/>
-                <br>
-
-                <div class="kanan">
-                    <a th:href="@{/}" class="btn" style="border-color: #ffc107"> Batal </a>
-                    <button type="submit" class="btn text-light" style="background-color: #ffc107">Simpan</button>
+                            <div class="namafield">Coupon Type</div>
+                            <div class="container">
+                                <div th:each="couponType : ${listCouponType}" class="checkbox checkbox-custom checkbox-circle">
+                                    <input class="form-check-input" type="checkbox"
+                                           th:value="${couponType.id}"
+                                           id="flexCheckDefault">
+                                    <label th:for="${couponType.id}" th:text="${couponType.use_day}"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-warning">Simpan</button>
+                        <a class="btn btn-outline-warning" href="/">Kembali</a>
+                    </form>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
+</div>
+
 </div>
 </body>
 </html>
