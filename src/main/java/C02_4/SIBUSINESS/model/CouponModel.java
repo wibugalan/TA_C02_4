@@ -63,5 +63,5 @@ public class CouponModel {
             name = "coupon_coupontype",
             joinColumns = @JoinColumn(name = "id_coupon"),
             inverseJoinColumns = @JoinColumn(name = "id_coupontype"))
-    List<CouponTypeModel> listCoupontype;
+    List<CouponTypeModel> listCou   pontype;
 }
