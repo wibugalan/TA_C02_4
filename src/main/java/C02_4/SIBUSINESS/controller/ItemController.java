@@ -54,6 +54,9 @@ public class ItemController {
     public String requestReject(Model model, @PathVariable Long id
     ) throws JsonEOFException {
         ItemFactoryModel itemFactory = itemFactoryDB.getById(id);
+        UserModel user = userDB.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        itemFactory.setApprover(user);
+        itemFactory.setStatus(1);
         itemFactory.setStatus(2);
         itemFactoryService.updateItem(itemFactory);
         return "request-reject";
