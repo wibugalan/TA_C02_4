@@ -67,7 +67,9 @@ public class FactoryRestServiceImpl implements FactoryRestService{
         Mono<String> uriWeb = this.webClient.get().uri("/api/list-mesin").retrieve().bodyToMono(String.class);
         List<FactoryDetail> allPlants = new ArrayList<FactoryDetail>();
         ObjectMapper mapper = new ObjectMapper();
-        FactoryDetail[] jsonObj = mapper.readValue(uriWeb.block(), FactoryDetail[].class);
+        ItemDetail jsonObj2 = mapper.readValue(uriWeb.block(), ItemDetail.class);
+        FactoryDetail[] jsonObj = mapper.readValue(jsonObj2.getResult().toString(), FactoryDetail[].class);
+
 
         String x = idKategori.toString();
 
