@@ -44,7 +44,7 @@
                 Daftar Item<span class="st-only"></span>
             </a>
 
-            <a class="nav-item nav-link text-white" sec:authorize="hasAnyAuthority('Manager Business','Staff Product')" th:href="@{/factory/mesin}" th:classappend="${#httpServletRequest.getRequestURI() == '/factory/mesin' ? 'font-weight-bold' : ''}">
+            <a class="nav-item nav-link text-white" sec:authorize="hasAnyAuthority('Manager Business','Staff Product','Staff_Product' )" th:href="@{/factory/mesin}" th:classappend="${#httpServletRequest.getRequestURI() == '/factory/mesin' ? 'font-weight-bold' : ''}">
                 Daftar Mesin<span class="st-only"></span>
             </a>
 

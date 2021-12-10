@@ -21,11 +21,13 @@
 
     .primary-button {
         background-color: #91684A;
+        outline-color:#91684A ;
         color: white;
     }
 
     .secondary-button {
         background-color: #FFDF91;
+        outline-color: #FFDF91;
         color: black;
     }
     .atas {
@@ -66,7 +68,7 @@
                 <td>
                     <form th:action="@{/user/update}" method="GET">
                         <input type="hidden" th:value="${user.uuid}" name="id" />
-                        <button type="submit" class="btn btn-sm btn-primary secondary-button">Update</button>
+                        <button type="submit" class="btn btn-sm secondary-button">Update</button>
                     </form>
                 </td>
 
@@ -78,7 +80,7 @@
     </div>
 
 
-    <a class="btn btn-primary primary-button" href="/">Home</a>
+    <a class="btn btn-sm primary-button" href="/">Home</a>
 </div>
 
 </body>

@@ -38,7 +38,6 @@ public class ItemFactoryModel implements Serializable{
     private String name;
 
     @Column(nullable = true)
-    @JsonIgnore
     private Integer status;
 
     @NotNull
@@ -55,13 +54,11 @@ public class ItemFactoryModel implements Serializable{
 
     @Size(max = 50)
     @Column(nullable = true)
-    @JsonIgnore
     private String cluster;
 
     // Relasi dengan user
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "approver", referencedColumnName = "uuid", nullable = true)
-    @JsonIgnore
     private UserModel approver;
 
 //    @ManyToOne(cascade=CascadeType.ALL)

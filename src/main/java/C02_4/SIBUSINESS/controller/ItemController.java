@@ -31,28 +31,6 @@ public class ItemController {
     @Autowired
     private ItemFactoryService itemFactoryService ;
 
-//    @PostMapping(value = "")
-//    private BaseResponse<ItemModel> addItem(
-//            @Valid @RequestBody ItemDTO item,
-//            BindingResult bindingResult) throws ParseException {
-//        BaseResponse<ItemModel> response = new BaseResponse<>();
-//        if (bindingResult.hasFieldErrors()) {
-//            throw new ResponseStatusException(
-//                    HttpStatus.BAD_REQUEST, "Request Body has invalid type or missing field");
-//        } else {
-//            try {
-//                ItemModel newItem = itemRestService.createItem(item);
-//                response.setStatus(201);
-//                response.setMessage("created");
-//                response.setResult(newItem);
-//            } catch (Exception e) {
-//                response.setStatus(400);
-//                response.setMessage(e.toString());
-//                response.setResult(null);
-//            }
-//            return response;
-//        }
-//    }
 
     @GetMapping(value="/requested/accept/{id}")
     public String requestAccept(Model model, @PathVariable Long id
@@ -75,11 +53,9 @@ public class ItemController {
     @GetMapping(value="/requested/reject/{id}")
     public String requestReject(Model model, @PathVariable Long id
     ) throws JsonEOFException {
-        System.out.println("Masuk Reject Bos");
         ItemFactoryModel itemFactory = itemFactoryDB.getById(id);
         itemFactory.setStatus(2);
         itemFactoryService.updateItem(itemFactory);
-//        itemFactoryService.deleteItem(itemFactory);
         return "request-reject";
     }
 

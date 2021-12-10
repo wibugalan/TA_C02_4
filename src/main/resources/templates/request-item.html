@@ -21,11 +21,13 @@
 
     .primary-button {
         background-color: #91684A;
+        outline: #91684A;
         color: white;
     }
 
     .secondary-button {
         background-color: #FFDF91;
+        outline: #FFDF91;
         color: black;
     }
     .atas {
@@ -75,8 +77,8 @@
                 <!--                <td sec:authorize="hasAuthority('Manager Business')">-->
                 <!--                <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAuthority('Staff Marketing')">-->
                 <td style="display: flex; align-items: center; justify-content: center;">
-                    <span ><a class="btn btn-sm btn-primary secondary-button mr-1" th:href="@{requested/accept/} +${item.id}" >Setuju</a></span>
-                    <span><a class="btn btn-sm btn-primary secondary-button ml-1" th:href="@{requested/reject/} +${item.id}">Tolak</a></span>
+                    <span ><a class="btn btn-sm secondary-button mr-1" th:href="@{requested/accept/} +${item.id}" >Setuju</a></span>
+                    <span><a class="btn btn-sm  secondary-button ml-1" th:href="@{requested/reject/} +${item.id}">Tolak</a></span>
                 </td>
 
             </tr>
@@ -86,7 +88,7 @@
     </div>
 
 
-    <a class="btn btn-primary primary-button" href="/">Home</a>
+    <a class="btn btn-sm primary-button" href="/">Home</a>
 </div>
 
 </body>
