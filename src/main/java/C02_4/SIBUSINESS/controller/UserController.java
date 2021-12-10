@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,7 +32,17 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    private String addUserSubmit(@ModelAttribute UserModel user, Model model){
+    private String addUserSubmit(@ModelAttribute UserModel user, Model model, RedirectAttributes attributes){
+        List<UserModel> listUser = userService.getUserList();
+        for (UserModel Olduser:
+                listUser) {
+
+            if (user.getUsername().equals(Olduser.getUsername())){
+                attributes.addFlashAttribute("notif", "Username yang anda masukkan sudah digunakan");
+                return "redirect:/user/add";
+            }
+
+        }
         userService.addUser(user);
         model.addAttribute("user", user);
         return "redirect:/";
