@@ -1,9 +1,9 @@
 package C02_4.SIBUSINESS.rest;
 
-public class BaseResponse {
+public class BaseResponse<A> {
     private int status;
     private String message;
-    private ItemResponse result;
+    private A result;
 
     public int getStatus() {
         return status;
@@ -13,7 +13,7 @@ public class BaseResponse {
         return message;
     }
 
-    public ItemResponse getResult() {
+    public A getResult() {
         return result;
     }
 
@@ -25,7 +25,7 @@ public class BaseResponse {
         this.message = message;
     }
 
-    public void setResult(ItemResponse result) {
+    public void setResult(A result) {
         this.result = result;
     }
 }
