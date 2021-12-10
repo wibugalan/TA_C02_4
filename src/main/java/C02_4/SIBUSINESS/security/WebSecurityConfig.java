@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/user/add").hasAnyAuthority("Manager Business")
-                .antMatchers("/user/add").permitAll()
+//                .antMatchers("/user/add").permitAll()
                 .antMatchers("/user/viewall").hasAnyAuthority("Manager Business")
                 .antMatchers("/user/update/**").hasAnyAuthority("Manager Business")
                 .antMatchers("/api/item/**").hasAnyAuthority("Manager Business")
