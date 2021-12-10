@@ -1,6 +1,8 @@
 package C02_4.SIBUSINESS.service;
 
 import C02_4.SIBUSINESS.rest.FactoryDetail;
+import C02_4.SIBUSINESS.rest.ItemDetail;
+import C02_4.SIBUSINESS.rest.ResultItemDetail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import org.json.JSONArray;
@@ -31,7 +33,10 @@ public class FactoryRestServiceImpl implements FactoryRestService{
         Mono<String> uriWeb = this.webClient.get().uri("/api/list-mesin").retrieve().bodyToMono(String.class);
         List<FactoryDetail> allPlants = new ArrayList<FactoryDetail>();
         ObjectMapper mapper = new ObjectMapper();
-        FactoryDetail[] jsonObj = mapper.readValue(uriWeb.block(), FactoryDetail[].class);
+
+        ItemDetail jsonObj2 = mapper.readValue(uriWeb.block(), ItemDetail.class);
+        FactoryDetail[] jsonObj = mapper.readValue(jsonObj2.getResult().toString(), FactoryDetail[].class);
+
 
         for (FactoryDetail itr : jsonObj) {
             int id = itr.getIdMesin();
