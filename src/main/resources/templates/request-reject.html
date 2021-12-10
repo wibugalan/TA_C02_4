@@ -7,8 +7,27 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 </head>
+<style>
+    .primary-button {
+        background-color: #91684A;
+        outline-color: #91684A ;
+        color: white;
+    }
+
+</style>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<h2 th:text="'Item dengan id Item ' + ${id} + ' gagal dibuat '" ></h2>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2 th:text="'Item dengan id Item ' + ${id} + ' gagal dibuat '" ></h2>
+                <br>
+                <a class="btn btn-sm primary-button mr-1" th:href="@{/item/requestItem}">View All Request Item</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
