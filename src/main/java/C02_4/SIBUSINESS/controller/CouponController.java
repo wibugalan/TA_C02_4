@@ -56,9 +56,9 @@ public class CouponController {
         UserModel user = userDB.findByUsername(authentication.getName());
 
         model.addAttribute("coupon", coupon);
+        model.addAttribute("flag", coupon.isStatus());
         model.addAttribute("listCouponType", listCouponType);
         model.addAttribute("user", user);
-        model.addAttribute("coupon", coupon);
         return "form-update-coupon";
     }
 
@@ -68,6 +68,7 @@ public class CouponController {
             Model model
     ){
         couponService.updateCoupon(coupon);
+        model.addAttribute("kodeCoupon", coupon.getCoupon_code());
         return "update-coupon";
     }
 }
