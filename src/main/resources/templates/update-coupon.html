@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>SI-BUSINESS</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<style>
+    .primary-button {
+        background-color: #91684A;
+        outline-color: #91684A ;
+        color: white;
+    }
+
+    .text-najla {
+        color:  #91684A;
+    }
+
+</style>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Coupon dengan kode <span class="text-najla" th:text="${kodeCoupon}"></span> berhasil diupdate</h2>
+                <br>
+                <a class="btn btn-sm primary-button mr-1" th:href="@{/coupon/viewall}">Kembali</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
