@@ -51,12 +51,8 @@ public class CouponModel {
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date expiryDate;
 
-//    @Size(max = 200)
-//    @Column(nullable = false)
-//    private String creator;
-
     // Relasi dengan user
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "creator", referencedColumnName = "uuid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserModel creator;
