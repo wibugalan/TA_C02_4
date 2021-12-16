@@ -4,6 +4,7 @@ import C02_4.SIBUSINESS.model.CouponTypeModel;
 import C02_4.SIBUSINESS.model.RoleModel;
 import C02_4.SIBUSINESS.model.UserModel;
 import C02_4.SIBUSINESS.repository.CouponDB;
+import C02_4.SIBUSINESS.repository.CouponTypeDB;
 import C02_4.SIBUSINESS.repository.UserDB;
 import C02_4.SIBUSINESS.service.CouponService;
 import C02_4.SIBUSINESS.service.CouponTypeService;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -34,6 +36,9 @@ public class CouponController {
 
     @Autowired
     CouponDB couponDB;
+
+    @Autowired
+    CouponTypeDB couponTypeDB;
 
     @Autowired
     CouponTypeService couponTypeService;
@@ -71,4 +76,48 @@ public class CouponController {
         model.addAttribute("kodeCoupon", coupon.getCoupon_code());
         return "update-coupon";
     }
+
+//    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+//    public String displayUpload() {
+//        return "upload";
+//    }
+//
+//    @RequestMapping(value = "/userFile", method = RequestMethod.POST)
+//    public String handleFileUpload(@RequestParam("myFile") MultipartFile file,
+//                                   @RequestParam List<String> searchValues) {
+//
+//        // here you can use searchValues and file
+//        return "result";
+//    }
+
+//    @GetMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    private String addCouponFormPage(Model model){
+        CouponModel coupon = new CouponModel();
+        List<CouponTypeModel> listCouponType = couponTypeService.getListCouponType();
+        model.addAttribute("listCouponType", listCouponType);
+        model.addAttribute("coupon", coupon);
+        return "form-add-coupon";
+    }
+
+//    @PostMapping("/update")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    private String addCouponSubmit(@ModelAttribute CouponModel coupon, Model model, @RequestParam List<CouponTypeModel> couponValues){
+
+        coupon.setCoupon_code("ADS");
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserModel user = userService.getUserByUsername(auth.getName());
+        coupon.setCreator(user);
+
+        coupon.setListCoupontype(couponValues);
+        couponService.addCoupon(coupon);
+
+        model.addAttribute("coupon", coupon);
+
+        return "redirect:/";
+    }
+
+
+
 }

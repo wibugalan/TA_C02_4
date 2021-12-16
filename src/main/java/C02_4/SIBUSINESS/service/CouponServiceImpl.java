@@ -33,4 +33,9 @@ public class CouponServiceImpl implements CouponService{
         couponDB.save(coupon);
     }
 
+    @Override
+    public  void addCoupon(CouponModel coupon){
+        couponDB.save(coupon);
+    }
+
 }

@@ -2,6 +2,7 @@ package C02_4.SIBUSINESS.service;
 
 
 import C02_4.SIBUSINESS.model.CouponTypeModel;
+import C02_4.SIBUSINESS.model.UserModel;
 import C02_4.SIBUSINESS.repository.CouponTypeDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,4 +20,5 @@ public class CouponTypeServiceImpl implements CouponTypeService{
     public List<CouponTypeModel> getListCouponType(){
         return couponTypeDB.findAll();
     }
+
 }
