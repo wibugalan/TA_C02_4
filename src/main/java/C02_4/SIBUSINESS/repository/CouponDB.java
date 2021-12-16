@@ -10,6 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface CouponDB extends JpaRepository<CouponModel, Long> {
-    Optional<CouponModel> findById(Long id);
-    List<CouponModel> findAllByStatus(Boolean hai);
+    List<CouponModel> findAll();
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SI-BUSINESS</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Permintaan Pembuatan Cabang Baru</div>
+                <div class="card-body">
+                    <form th:action="@{/cabang/add}" method="POST">
+                        <label>Nama</label>
+                        <input type="text" name="nama" class="form-control" />
+
+                        <label>Alamat</label>
+                        <input type="text" name="alamat" class="form-control" />
+
+                        <label>Ukuran</label>
+                        <input required min="0" type="number" name="ukuran" class="form-control" />
+
+                        <label>Nomor Telepon</label>
+                        <input type="text" name="no_telp" class="form-control" />
+
+                        <br>
+                        <button type="submit" class="btn btn-warning">Simpan</button>
+                        <a class="btn btn-outline-warning" href="/">Kembali</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

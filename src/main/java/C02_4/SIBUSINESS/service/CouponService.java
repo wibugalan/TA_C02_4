@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface CouponService {
     List<CouponModel> getListCoupon();
-    List<CouponModel> getListCouponRequest();
     CouponModel getCouponById(Long id);
-    CouponModel updateStatus(Long id);
+    void updateCoupon(CouponModel coupon);
 }

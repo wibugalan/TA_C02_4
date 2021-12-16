@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+  <meta charset="UTF-8">
+  <title> SI-BUSINESS </title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<style>
+  .judul {
+    color: #0D0603;
+    font-weight:800;
+  }
+
+  thead {
+    background-color: #91684A;
+    color: white;
+    white-space: nowrap
+  }
+
+  .primary-button {
+    background-color: #91684A;
+    outline-color:#91684A ;
+    color: white;
+  }
+
+  .secondary-button {
+    background-color: #FFDF91;
+    outline-color: #FFDF91;
+    color: black;
+  }
+  .atas {
+    margin-top: 32px;
+  }
+  .fa {
+    margin-right: 5px;
+  }
+  table tr th {
+    width: 140px;
+
+  }
+</style>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container atas">
+  <h2 class="judul">Daftar Seluruh User</h2>
+  <br>
+  <a th:href="@{/user/add}" class="mx-2 btn btn-warning">Tambah User Baru</a>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Role</th>
+        <!--                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>-->
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user : ${listCoupon}">
+        <!--                <td sec:authorize="hasAuthority('Manager Business')">-->
+        <td>
+          <div class="align-items-center">
+            <a th:href="@{/coupon/update/}+${user.id}" class="btn primary-button">Ubah</a>
+          </div>
+        </td>
+
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+  <a class="btn btn-sm primary-button" href="/">Home</a>
+</div>
+
+</body>
+
+</html>

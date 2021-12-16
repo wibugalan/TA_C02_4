@@ -1,5 +1,4 @@
 package C02_4.SIBUSINESS.service;
-
 import C02_4.SIBUSINESS.model.CouponModel;
 import C02_4.SIBUSINESS.repository.CouponDB;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,6 @@ public class CouponServiceImpl implements CouponService{
     }
 
     @Override
-    public List<CouponModel> getListCouponRequest(){
-        return couponDB.findAllByStatus(false);
-    }
-
-    @Override
     public CouponModel getCouponById(Long id){
         Optional<CouponModel> target = couponDB.findById(id);
         if(target.isPresent()){
@@ -35,13 +29,8 @@ public class CouponServiceImpl implements CouponService{
     }
 
     @Override
-    public CouponModel updateStatus(Long id){
-        Optional<CouponModel> target = couponDB.findById(id);
-        if(target.isPresent()){
-            CouponModel coupon =  target.get();
-            coupon.setStatus(true);
-            return coupon;
-        }
-        return null;
+    public  void updateCoupon(CouponModel coupon){
+        couponDB.save(coupon);
     }
+
 }

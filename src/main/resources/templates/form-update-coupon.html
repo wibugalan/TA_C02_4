@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> SI-BUSINESS </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<br>
+<br>
+ <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Update Coupon</div>
+                <div class="card-body">
+                    <form th:action="@{/coupon/update}"th:object="${coupon}" method = "POST">
+                        <div class="isi">
+                            <input type="hidden" th:field="*{id}"/>
+                            <input type="hidden" th:field="*{coupon_code}"/>
+                            <input type="hidden" th:field="*{status}"/>
+                            <input type="hidden" th:field="*{creator.uuid}"/>
+
+                            <div class="namafield">Coupon Name</div>
+                            <input  class="form-control" type="text" name="coupon_name" th:value="*{coupon_name}"/>
+                            <br>
+
+                            <div class="namafield">Coupon Code</div>
+                            <input type="text"   class="form-control" name="coupon_code" th:value="*{coupon_code}" disabled/>
+                            <br>
+
+                            <div class="namafield">Creator</div>
+                            <input type="text"   class="form-control" name="creator" th:value="*{creator.username}" disabled/>
+                            <br>
+
+                            <div class="namafield">Status</div>
+                            <input type="checkbox" name="status"  th:checked="${flag} ? 'checked' : ''"/>
+                            <label>Disetujui</label>
+                            <br>
+
+                            <div class="namafield">Discount Amount</div>
+                            <input  class="form-control" type="text" name="discountAmount" th:value="*{discountAmount}" />
+                            <br>
+
+                            <div class="namafield">Expiry Date</div>
+                            <input  th:value="*{#dates.format(expiryDate, 'yyyy-MM-dd')}" class="form-control" type="date" name="expiryDate"/>
+                            <br>
+
+                            <div class="namafield">Coupon Type</div>
+                            <div class="container">
+                                <div th:each="couponType , iterationStatus: ${listCouponType}" class="checkbox checkbox-custom checkbox-circle">
+                                    <input class="form-check-input" type="checkbox"
+                                           th:value="${couponType.id}"
+                                           id="flexCheckDefault" th:field="*{listCoupontype}">
+                                    <label th:for="${couponType.id}" th:text="${couponType.use_day}"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-warning">Simpan</button>
+                        <a class="btn btn-outline-warning" href="/">Kembali</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+</html>

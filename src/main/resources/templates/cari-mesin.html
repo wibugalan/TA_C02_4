@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cari Pilot</title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container">
+  <h2>Cari Pembelian</h2>
+  <table class="table">
+    <form th:action="@{/cari/mesin}" method="GET">
+      <thead>
+      <tr>
+        <td> Pilih Member </td>
+        <td> Pilih Pembayaran </td>
+        <td></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+
+        <td>
+          <div>
+            <select name="idKategori" >
+              <option value="">Select Member</option>
+              <option th:each="kategori : ${listKategori}" th:text="${kategori}" th:value="${kategori}"></option>
+            </select>
+          </div>
+
+
+        </td>
+
+
+        <td>
+          <button class="btn btn-primary text-white" type="submit"> Filter </button>
+        </td>
+      </tr>
+      </tbody>
+    </form>
+  </table>
+  <div class="judul">Daftar Pembelian</div>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>No.</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="mesin : ${listMesin}">
+        <td th:text="${mesin.nama}"></td>
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+</div>
+</body>
+</html>
