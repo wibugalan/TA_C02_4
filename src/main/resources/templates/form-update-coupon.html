@@ -23,6 +23,7 @@
                             <input type="hidden" th:field="*{id}"/>
                             <input type="hidden" th:field="*{coupon_code}"/>
                             <input type="hidden" th:field="*{status}"/>
+                            <input type="hidden" th:field="*{creator.uuid}"/>
 
                             <div class="namafield">Coupon Name</div>
                             <input  class="form-control" type="text" name="coupon_name" th:value="*{coupon_name}"/>
@@ -33,7 +34,12 @@
                             <br>
 
                             <div class="namafield">Creator</div>
-                            <input type="text"   class="form-control" name="creator" th:value="{creator}" disabled/>
+                            <input type="text"   class="form-control" name="creator" th:value="*{creator.username}" disabled/>
+                            <br>
+
+                            <div class="namafield">Status</div>
+                            <input type="checkbox" name="status"  th:checked="${flag} ? 'checked' : ''"/>
+                            <label>Disetujui</label>
                             <br>
 
                             <div class="namafield">Discount Amount</div>
@@ -46,10 +52,10 @@
 
                             <div class="namafield">Coupon Type</div>
                             <div class="container">
-                                <div th:each="couponType : ${listCouponType}" class="checkbox checkbox-custom checkbox-circle">
+                                <div th:each="couponType , iterationStatus: ${listCouponType}" class="checkbox checkbox-custom checkbox-circle">
                                     <input class="form-check-input" type="checkbox"
                                            th:value="${couponType.id}"
-                                           id="flexCheckDefault">
+                                           id="flexCheckDefault" th:field="*{listCoupontype}">
                                     <label th:for="${couponType.id}" th:text="${couponType.use_day}"></label>
                                 </div>
                             </div>
