@@ -48,6 +48,10 @@
                 Daftar Mesin<span class="st-only"></span>
             </a>
 
+            <a class="nav-item nav-link text-white"  th:href="@{/coupon/}" th:classappend="${#httpServletRequest.getRequestURI() == '/coupon' ? 'font-weight-bold' : ''}">
+                Coupon<span class="st-only"></span>
+            </a>
+
 
         </ul>
         <ul class="navbar-nav pull-right">

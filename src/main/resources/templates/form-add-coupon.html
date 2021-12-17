@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> SI-BUSINESS </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Add Coupon</div>
+                <div class="card-body">
+                    <form th:action="@{/coupon/add}"th:object="${coupon}" method = "POST">
+                        <div class="isi">
+
+                            <label>Coupon Name</label>
+                            <input type="text" name="coupon_name" class="form-control" required />
+
+                            <label>Discount Amount</label>
+                            <input required min="0" type="number" name="discountAmount" class="form-control" />
+
+                            <label>Expiry Date</label>
+                            <br>
+                            <input required type="date" name="expiryDate"/>
+                            <br><br>
+
+                            <label>Coupon Type</label>
+                            <ul>
+                                <li th:each="tipe : ${listCouponType}">
+                                    <input type="checkbox" name="couponValues" th:value="${tipe.id}"/>
+                                    <label th:text="${tipe.use_day}"></label>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-warning">Simpan</button>
+                        <a class="btn btn-outline-warning" href="/">Home</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+</html>
