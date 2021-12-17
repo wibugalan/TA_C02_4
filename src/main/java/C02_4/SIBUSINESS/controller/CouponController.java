@@ -77,20 +77,7 @@ public class CouponController {
         return "update-coupon";
     }
 
-//    @RequestMapping(value = "/upload", method = RequestMethod.GET)
-//    public String displayUpload() {
-//        return "upload";
-//    }
-//
-//    @RequestMapping(value = "/userFile", method = RequestMethod.POST)
-//    public String handleFileUpload(@RequestParam("myFile") MultipartFile file,
-//                                   @RequestParam List<String> searchValues) {
-//
-//        // here you can use searchValues and file
-//        return "result";
-//    }
-
-//    @GetMapping("/add")
+    //  Add coupon get
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     private String addCouponFormPage(Model model){
         CouponModel coupon = new CouponModel();
@@ -100,17 +87,23 @@ public class CouponController {
         return "form-add-coupon";
     }
 
-//    @PostMapping("/update")
+    // Add coupon post
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     private String addCouponSubmit(@ModelAttribute CouponModel coupon, Model model, @RequestParam List<CouponTypeModel> couponValues){
-
+        coupon.setListCoupontype(couponValues);
         coupon.setCoupon_code("ADS");
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserModel user = userService.getUserByUsername(auth.getName());
         coupon.setCreator(user);
 
-        coupon.setListCoupontype(couponValues);
+        if(auth.getAuthorities().toString().contains("[Staff_Marketing]") || auth.getAuthorities().toString().equalsIgnoreCase("[Staff Marketing]")){
+            coupon.setStatus(true);
+        } else if (auth.getAuthorities().toString().equalsIgnoreCase("[Staff_Product]") || auth.getAuthorities().toString().equalsIgnoreCase("[Staff Product]")){
+            coupon.setStatus(false);
+        }
+        System.out.println(auth.getAuthorities().toString());
+
         couponService.addCoupon(coupon);
 
         model.addAttribute("coupon", coupon);
