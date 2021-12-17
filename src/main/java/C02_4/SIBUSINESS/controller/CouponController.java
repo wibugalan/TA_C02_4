@@ -91,7 +91,7 @@ public class CouponController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     private String addCouponSubmit(@ModelAttribute CouponModel coupon, Model model, @RequestParam List<CouponTypeModel> couponValues){
         coupon.setListCoupontype(couponValues);
-        coupon.setCoupon_code("ADS");
+        coupon.setCoupon_code("NULL");
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserModel user = userService.getUserByUsername(auth.getName());
@@ -102,13 +102,13 @@ public class CouponController {
         } else if (auth.getAuthorities().toString().equalsIgnoreCase("[Staff_Product]") || auth.getAuthorities().toString().equalsIgnoreCase("[Staff Product]")){
             coupon.setStatus(false);
         }
-        System.out.println(auth.getAuthorities().toString());
+//        System.out.println(auth.getAuthorities().toString());
 
         couponService.addCoupon(coupon);
 
         model.addAttribute("coupon", coupon);
 
-        return "redirect:/";
+        return "add-coupon-success";
     }
 
 
