@@ -44,10 +44,11 @@
 
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
+
 <div class="container atas">
-  <h2 class="judul">Daftar Seluruh User</h2>
+  <h2 class="judul">Coupon</h2>
   <br>
-  <a th:href="@{/user/add}" class="mx-2 btn btn-warning">Tambah User Baru</a>
+  <a th:href="@{/coupon/add}" class="mx-2 btn btn-warning" sec:authorize="hasAnyAuthority('Staff Product','Staff_Product', 'Staff_Marketing', 'Staff Marketing')">Tambah Coupon</a>
 
     <table class="table table-striped">
       <thead>
@@ -55,14 +56,13 @@
         <th>Id</th>
         <th>Username</th>
         <th>Role</th>
-        <!--                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>-->
-        <th>Action</th>
+        <th sec:authorize="hasAnyAuthority('Staff_Marketing', 'Staff Marketing')" >Action</th>
+
       </tr>
       </thead>
       <tbody>
       <tr th:each="user : ${listCoupon}">
-        <!--                <td sec:authorize="hasAuthority('Manager Business')">-->
-        <td>
+        <td sec:authorize="hasAnyAuthority('Staff_Marketing', 'Staff Marketing')" >
           <div class="align-items-center">
             <a th:href="@{/coupon/update/}+${user.id}" class="btn primary-button">Ubah</a>
           </div>
