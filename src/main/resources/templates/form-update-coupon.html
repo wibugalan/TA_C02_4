@@ -25,6 +25,10 @@
                             <input type="hidden" th:field="*{status}"/>
                             <input type="hidden" th:field="*{creator.uuid}"/>
 
+                            <div class="namafield">ID</div>
+                            <input type="text"   class="form-control" name="id" th:value="*{id}" disabled/>
+                            <br>
+
                             <div class="namafield">Coupon Name</div>
                             <input  class="form-control" type="text" name="coupon_name" th:value="*{coupon_name}"/>
                             <br>

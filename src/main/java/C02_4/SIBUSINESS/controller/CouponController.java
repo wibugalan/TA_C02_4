@@ -43,12 +43,12 @@ public class CouponController {
     @Autowired
     CouponTypeService couponTypeService;
 
-    @RequestMapping("/")
-    public String home() {
-        return "coupon";
-    }
+//    @RequestMapping("/")
+//    public String home() {
+//        return "coupon";
+//    }
 
-    @GetMapping("/viewall")
+    @GetMapping("/")
     public String listCoupon(Model model){
         List<CouponModel> listCoupon = couponDB.findAll();
         model.addAttribute("listCoupon", listCoupon);
