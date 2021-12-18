@@ -41,11 +41,11 @@
             </a>
 
             <a class="nav-item nav-link text-white" th:href="@{/item/}" th:classappend="${#httpServletRequest.getRequestURI() == '/item' ? 'font-weight-bold' : ''}">
-                Daftar Item<span class="st-only"></span>
+                Item<span class="st-only"></span>
             </a>
 
             <a class="nav-item nav-link text-white" sec:authorize="hasAnyAuthority('Manager Business','Staff Product','Staff_Product' )" th:href="@{/factory/mesin}" th:classappend="${#httpServletRequest.getRequestURI() == '/factory/mesin' ? 'font-weight-bold' : ''}">
-                Daftar Mesin<span class="st-only"></span>
+                Mesin<span class="st-only"></span>
             </a>
 
             <a class="nav-item nav-link text-white"  th:href="@{/coupon/}" th:classappend="${#httpServletRequest.getRequestURI() == '/coupon' ? 'font-weight-bold' : ''}">

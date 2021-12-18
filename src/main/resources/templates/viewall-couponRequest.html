@@ -62,9 +62,10 @@
                 <th>Discount Amount</th>
                 <th>Expiry Date</th>
                 <th>Creator</th>
-                <th>Status</th>
+                <!-- <th>Status</th> -->
                 <!--                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>-->
-                <th>Action</th>
+                <th sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')">Action</th>
+
             </tr>
             </thead>
             <tbody>
@@ -76,15 +77,19 @@
                 <td th:text="${coupon.discountAmount}"></td>
                 <td th:text="${coupon.expiryDate}"></td>
                 <td th:text="${coupon.creator.username}"></td>
-                <td th:text="${coupon.status}"></td>
+                <!-- <td th:text="${coupon.status}"></td> -->
 
 <!--                <td sec:authorize="hasAuthority('Manager Business')">-->
-<!--                <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAuthority('Staff Marketing')">-->
-                <td style="display: flex; align-items: center; justify-content: center;">
-                    <span ><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/setuju-status(id=${coupon.id})}">Setuju</a></span>
-                    <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{#terapkan Hapus}">Hapus</a></span>
+                <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')">
+                <!-- <td style="display: flex; align-items: center; justify-content: center;"> -->
+                    <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/approve(id=${coupon.id})}">Setuju</a></span>
+                    <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/reject(id=${coupon.id})}">Hapus</a></span>
                     <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/detail(id=${coupon.id})}">Detail</a></span>
                 </td>
+
+                <!-- <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAnyAuthority('Staff Product', 'Staff_Product', 'Manager')">
+                    <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/detail(id=${coupon.id})}">Detail</a></span>
+                </td> -->
 
             </tr>
             </tbody>
@@ -96,7 +101,6 @@
         <br>
         <br>
         <h1>Maaf tidak terdapat Coupon Creation Request</h1>
-        <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/detail(id=1)}">Detail</a></span>
         <br>
         <br>
     </div>

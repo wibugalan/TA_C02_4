@@ -50,8 +50,8 @@ public class CouponController {
 
     @GetMapping("/")
     public String listCoupon(Model model){
-        List<CouponModel> listCoupon = couponDB.findAll();
-        model.addAttribute("listCoupon", listCoupon);
+        List<CouponModel> listCoupon = couponDB.findAllByStatus(true);
+        model.addAttribute("listAll", listCoupon);
         return "viewall-coupon";
     }
 
@@ -71,6 +71,29 @@ public class CouponController {
         model.addAttribute("coupon", coupon);
         return "view-coupon";
     }
+
+    @GetMapping("/approve")
+    public String approveCoupon(
+            @RequestParam(value="id") Long id,
+            Model model
+    ){
+        couponService.approveCoupon(id);
+        List<CouponModel> listCoupon = couponDB.findAllByStatus(false);
+        model.addAttribute("listAll", listCoupon);
+        return "viewall-couponRequest";
+    }
+
+    @GetMapping("/reject")
+    public String rejectCoupon(
+            @RequestParam(value="id") Long id,
+            Model model
+    ){
+        couponService.rejectCoupon(id);
+        List<CouponModel> listCoupon = couponDB.findAllByStatus(false);
+        model.addAttribute("listAll", listCoupon);
+        return "viewall-couponRequest";
+    }
+
 
     @GetMapping("/update/{id}")
     private String updateCouponFormPage(
