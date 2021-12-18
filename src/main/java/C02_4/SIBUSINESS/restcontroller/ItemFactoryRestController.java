@@ -34,7 +34,6 @@ public class ItemFactoryRestController {
             );
         }else{
             try{
-                item.setCluster("C02");
                 item.setStatus(0);
                 ItemFactoryModel hasil = itemFactoryRestService.createItem(item);
                 response.setStatus(200);

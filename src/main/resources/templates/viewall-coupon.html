@@ -48,32 +48,61 @@
 <div class="container atas">
   <h2 class="judul">Coupon</h2>
   <br>
-  <a th:href="@{/coupon/add}" class="mx-2 btn btn-warning" sec:authorize="hasAnyAuthority('Staff Product','Staff_Product', 'Staff_Marketing', 'Staff Marketing')">Tambah Coupon</a>
+  <div style="display: flex; align-items: center; justify-content: center;">
+    <span><a th:href="@{/coupon/add}" class="mx-2 btn btn-warning" sec:authorize="hasAnyAuthority('Staff Product','Staff_Product', 'Staff_Marketing', 'Staff Marketing')">Tambah Coupon</a></span>
+    <span><a th:href="@{/coupon/requestCreation}" class="mx-2 btn btn-warning">Coupon Request Creation</a></span>
+  </div>
+  
 
+
+  <div class="atas" th:if="*{listAll.size() != 0}">
+    <br>
     <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Id</th>
-        <th>Username</th>
-        <th>Role</th>
-        <th sec:authorize="hasAnyAuthority('Staff_Marketing', 'Staff Marketing')" >Action</th>
+        <thead>
+        <tr>
+            <th>Id Coupon</th>
+            <th>Coupon Code</th>
+            <th>Coupon Name</th>
+            <th>Discount Amount</th>
+            <th>Expiry Date</th>
+            <th>Creator</th>
+            <th>Action</th>
+            <!-- <th>Status</th> -->
+            <!--                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>-->
+            <!-- <th>Action</th> -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="coupon : ${listAll}">
 
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="user : ${listCoupon}">
-        <td sec:authorize="hasAnyAuthority('Staff_Marketing', 'Staff Marketing')" >
-          <div class="align-items-center">
-            <a th:href="@{/coupon/update/}+${user.id}" class="btn primary-button">Ubah</a>
-          </div>
-        </td>
+            <td th:text="${coupon.id}"></td>
+            <td th:text="${coupon.coupon_code}"></td>
+            <td th:text="${coupon.coupon_name}"></td>
+            <td th:text="${coupon.discountAmount}"></td>
+            <td th:text="${coupon.expiryDate}"></td>
+            <td th:text="${coupon.creator.username}"></td>
+            <td style="display: flex; align-items: center; justify-content: center;">
+              <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/detail(id=${coupon.id})}">Detail</a></span>
+              <span sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')"><a class="btn btn-sm btn-primary secondary-button" href="@{coupon/update/} +${coupon.id}">Ubah</a></span>
+              <span sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')"><a class="btn btn-sm btn-primary secondary-button" th:href="@{#terapkan Hapus}">Hapus</a></span>
+            </td>
 
 
-      </tr>
-      </tbody>
+            <!-- <td th:text="${coupon.status}"></td> -->
+
+<!--                <td sec:authorize="hasAuthority('Manager Business')">-->
+<!--                <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAuthority('Staff Marketing')">-->
+            <!-- <td style="display: flex; align-items: center; justify-content: center;">
+                <span ><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/approve(id=${coupon.id})}">Setuju</a></span>
+                <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/reject(id=${coupon.id})}">Hapus</a></span>
+                <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/detail(id=${coupon.id})}">Detail</a></span>
+            </td> -->
+
+        </tr>
+        </tbody>
     </table>
 
-  </div>
+
 
 
   <a class="btn btn-sm primary-button" href="/">Home</a>

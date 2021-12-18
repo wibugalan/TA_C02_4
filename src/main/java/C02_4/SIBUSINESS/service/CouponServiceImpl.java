@@ -38,4 +38,16 @@ public class CouponServiceImpl implements CouponService{
         couponDB.save(coupon);
     }
 
+    @Override
+    public CouponModel approveCoupon(Long id){
+        CouponModel coupon = couponDB.getById(id);
+        coupon.setStatus(true);
+        return coupon;
+    }
+
+    @Override
+    public void rejectCoupon(Long id){
+        couponDB.deleteById(id);
+    }
+
 }

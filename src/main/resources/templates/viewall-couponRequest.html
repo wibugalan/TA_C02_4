@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="UTF-8">
+    <title> SI-BUSINESS </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<style>
+    .judul {
+        color: #0D0603;
+        font-weight:800;
+    }
+
+    thead {
+        background-color: #91684A;
+        color: white;
+        white-space: nowrap
+    }
+
+    .primary-button {
+        background-color: #91684A;
+        color: white;
+    }
+
+    .secondary-button {
+        background-color: #FFDF91;
+        color: black;
+    }
+    .atas {
+        margin-top: 32px;
+    }
+    .fa {
+        margin-right: 5px;
+    }
+    table tr th {
+        width: 140px;
+
+    }
+    h1 {
+        width:500px;
+        margin: 0 auto;
+        text-align: center;
+    }
+</style>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container atas">
+
+
+    <div class="atas" th:if="*{listAll.size() != 0}">
+        <h2 class="judul">Daftar Coupon Creation Request</h2>
+        <br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id Coupon</th>
+                <th>Coupon Code</th>
+                <th>Coupon Name</th>
+                <th>Discount Amount</th>
+                <th>Expiry Date</th>
+                <th>Creator</th>
+                <!-- <th>Status</th> -->
+                <!--                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>-->
+                <th sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')">Action</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="coupon : ${listAll}">
+
+                <td th:text="${coupon.id}"></td>
+                <td th:text="${coupon.coupon_code}"></td>
+                <td th:text="${coupon.coupon_name}"></td>
+                <td th:text="${coupon.discountAmount}"></td>
+                <td th:text="${coupon.expiryDate}"></td>
+                <td th:text="${coupon.creator.username}"></td>
+                <!-- <td th:text="${coupon.status}"></td> -->
+
+<!--                <td sec:authorize="hasAuthority('Manager Business')">-->
+                <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')">
+                <!-- <td style="display: flex; align-items: center; justify-content: center;"> -->
+                    <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/approve(id=${coupon.id})}">Setuju</a></span>
+                    <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/reject(id=${coupon.id})}">Hapus</a></span>
+                    <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/detail(id=${coupon.id})}">Detail</a></span>
+                </td>
+
+                <!-- <td style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAnyAuthority('Staff Product', 'Staff_Product', 'Manager')">
+                    <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/detail(id=${coupon.id})}">Detail</a></span>
+                </td> -->
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="atas" th:if="*{listAll.size() == 0}">
+        <br>
+        <br>
+        <h1>Maaf tidak terdapat Coupon Creation Request</h1>
+        <br>
+        <br>
+    </div>
+
+
+    <a class="btn btn-primary primary-button" href="/">Home</a>
+</div>
+
+</body>
+
+</html>

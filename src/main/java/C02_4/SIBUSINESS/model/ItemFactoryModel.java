@@ -52,10 +52,6 @@ public class ItemFactoryModel implements Serializable{
     @Column(nullable = false)
     private Integer category;
 
-    @Size(max = 50)
-    @Column(nullable = true)
-    private String cluster;
-
     // Relasi dengan user
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "approver", referencedColumnName = "uuid", nullable = true)
