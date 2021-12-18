@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> SI-BUSINESS </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+
+<style>
+    .judul {
+        color: #0D0603;
+        font-weight:800;
+    }
+
+    thead {
+        background-color: #91684A;
+        color: white;
+        white-space: nowrap
+    }
+
+    .primary-button {
+        background-color: #91684A;
+        outline-color:#91684A ;
+        color: white;
+    }
+
+    .secondary-button {
+        background-color: #FFDF91;
+        outline-color: #FFDF91;
+        color: black;
+    }
+    .atas {
+        margin-top: 32px;
+    }
+    .fa {
+        margin-right: 5px;
+    }
+    table tr th {
+        width: 140px;
+
+    }
+</style>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2 th:text="'Coupon bernama ' + ${coupon.coupon_name} + ' dengan id ' + ${coupon.id} + ' berhasil ditambahkan.'"></h2>
+                <br>
+                <a class="btn btn-primary primary-button" href="/coupon/add">Tambah Coupon lagi</a>
+                <a class="btn btn-primary secondary-button" href="/">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

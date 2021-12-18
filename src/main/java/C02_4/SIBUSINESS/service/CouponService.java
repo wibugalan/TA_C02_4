@@ -8,4 +8,5 @@ public interface CouponService {
     List<CouponModel> getListCoupon();
     CouponModel getCouponById(Long id);
     void updateCoupon(CouponModel coupon);
+    void addCoupon(CouponModel coupon);
 }
