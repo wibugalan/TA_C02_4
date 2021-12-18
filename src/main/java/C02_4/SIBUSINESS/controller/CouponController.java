@@ -45,6 +45,23 @@ public class CouponController {
         return "viewall-coupon";
     }
 
+    @GetMapping("/requestCreation")
+    public String listRequest(Model model){
+        List<CouponModel> listCoupon = couponDB.findAllByStatus(false);
+        model.addAttribute("listAll", listCoupon);
+        return "viewall-couponRequest";
+    }
+
+    @GetMapping("/detail")
+    public String detailCoupon(
+            @RequestParam(value="id") Long id,
+            Model model
+    ){
+        CouponModel coupon = couponDB.getById(id);
+        model.addAttribute("coupon", coupon);
+        return "view-coupon";
+    }
+
     @GetMapping("/update/{id}")
     private String updateCouponFormPage(
             @PathVariable Long id,

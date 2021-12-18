@@ -57,7 +57,6 @@
                 <th>Stock</th>
                 <th>Price</th>
                 <th>Category</th>
-                <th>Cluster</th>
                 <th>Status</th>
                 <!--                <th sec:authorize="hasAuthority('Manager Business')" >Action</th>-->
                 <th>Action</th>
@@ -71,7 +70,6 @@
                 <td th:text="${item.stock}"></td>
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.category}"></td>
-                <td th:text="${item.cluster}"></td>
                 <td th:if="${item.status} == 0">Menunggu Persetujuan</td>
 
                 <!--                <td sec:authorize="hasAuthority('Manager Business')">-->
