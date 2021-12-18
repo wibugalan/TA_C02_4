@@ -6,7 +6,7 @@
     <title> SI-BUSINESS </title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
-    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <style>
     .judul {
@@ -45,8 +45,7 @@
 
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<div class="container atas">
-    <h2 class="judul">Detail Item</h2>
+
 
 <!--    <table class="table atas">-->
 <!--        <thead>-->
@@ -73,33 +72,43 @@
 <!--        </tbody>-->
 <!--    </table>-->
 
-    <table style="width:95%">
-        <tr>
-            <th>UUID:</th>
-            <td th:text="${listItem.uuid}"></td>
-        </tr>
-        <tr>
-            <th>Nama :</th>
-            <td th:text="${listItem.nama}"></td>
-        </tr>
-        <tr>
-            <th>Harga :</th>
-            <td th:text="${listItem.harga}"></td>
-        </tr>
-        <tr>
-            <th>Stok :</th>
-            <td th:text="${listItem.stok}"></td>
-        </tr>
-        <tr>
-            <th>Kategori :</th>
-            <td th:text="${listItem.kategori}"></td>
-        </tr>
 
 
-    </table>
 
-    <a class="btn btn-sm btn-danger" th:href="@{/item/}">Kembali</a>
 
+
+<div class="container mb-4" style="display: flex; align-items: center;justify-content: center;">
+    <div class="card m-4" style="width: 75%;">
+        <div class="card-header">
+            <h2 style="text-align: center;">Detail Item</h2>
+        </div>
+        <div class="card-body">
+            <table style="width:95%">
+                <tr>
+                    <th>UUID:</th>
+                    <td th:text="': '+ ${listItem.uuid}"></td>
+                </tr>
+                <tr>
+                    <th>Nama</th>
+                    <td th:text="': '+ ${listItem.nama}"></td>
+                </tr>
+                <tr>
+                    <th>Harga</th>
+                    <td th:text="': '+ ${listItem.harga}"></td>
+                </tr>
+                <tr>
+                    <th>Stok</th>
+                    <td th:text="': '+ ${listItem.stok}"></td>
+                </tr>
+                <tr>
+                    <th>Kategori</th>
+                    <td th:text="': '+ ${listItem.kategori}"></td>
+                </tr>
+            </table>
+            <br>
+            <a class="btn btn-sm btn-danger" th:href="@{/item/}">Kembali</a>
+        </div>
+    </div>
 
 </div>
 </body>
