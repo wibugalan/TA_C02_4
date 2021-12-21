@@ -156,6 +156,15 @@ public class CouponController {
         return "add-coupon-success";
     }
 
+    @GetMapping("/delete/{id}")
+    private String deleteCouponFormPage(
+            @PathVariable Long id)
+    {
+        CouponModel coupon = couponService.getCouponById(id);
+        couponService.deleteCoupon(coupon);
+        return "redirect:/coupon/";
+    }
+
 
 
 }

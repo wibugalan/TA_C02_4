@@ -50,4 +50,8 @@ public class CouponServiceImpl implements CouponService{
         couponDB.deleteById(id);
     }
 
+    @Override
+    public void deleteCoupon(CouponModel coupon) {
+        couponDB.delete(coupon);
+    }
 }
