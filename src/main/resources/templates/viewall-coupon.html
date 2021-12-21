@@ -6,6 +6,10 @@
   <title> SI-BUSINESS </title>
   <object th:include="fragments/fragment :: css" th:remove="tag"></object>
   <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <style>
   .judul {
@@ -84,7 +88,28 @@
             <td style="display: flex; align-items: center; justify-content: center;">
               <span><a class="btn btn-sm m-2 secondary-button" th:href="@{/coupon/detail(id=${coupon.id})}">Detail</a></span>
               <span sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')">  <a th:href="@{/coupon/update/}+${coupon.id}"  class="btn btn-sm m-2 secondary-button">Ubah</a></span>
-              <span sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')"><a class="btn btn-sm m-2 secondary-button" th:href="@{#terapkan Hapus}">Hapus</a></span>
+              <span sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')">
+                  <button type="button" class="btn btn-sm m-2 secondary-button" data-toggle="modal" data-target="#exampleModal3">Hapus</button>
+                  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModal3Label">Hapus Coupon</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                              </div>
+                              <div class="modal-body">
+                                  <h4 th:text="'Apakah anda yakin ingin menghapus Coupon ini?'"></h4>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-sm m-2 btn-secondary" data-dismiss="modal">Tidak</button>
+                                  <a th:href="@{/coupon/delete/}+${coupon.id}"  class="btn btn-sm m-2 btn-danger">Hapus</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </span>
             </td>
 
 
@@ -98,11 +123,11 @@
                 <span><a class="btn btn-sm btn-primary secondary-button" th:href="@{/coupon/detail(id=${coupon.id})}">Detail</a></span>
             </td> -->
 
+
+
         </tr>
         </tbody>
     </table>
-
-
 
 
   <a class="btn btn-sm primary-button" href="/">Home</a>

@@ -11,4 +11,5 @@ public interface CouponService {
     void addCoupon(CouponModel coupon);
     CouponModel approveCoupon(Long id);
     void rejectCoupon(Long id);
+    void deleteCoupon(CouponModel coupon);
 }
