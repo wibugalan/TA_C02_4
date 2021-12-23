@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-<<<<<<< HEAD
 import java.text.SimpleDateFormat;
-=======
->>>>>>> 970b8dceb50c6e962916b93dda5cc43838431543
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
