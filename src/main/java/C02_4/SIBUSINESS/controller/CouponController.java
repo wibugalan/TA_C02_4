@@ -136,7 +136,8 @@ public class CouponController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     private String addCouponSubmit(@ModelAttribute CouponModel coupon, Model model, @RequestParam List<CouponTypeModel> couponValues){
         coupon.setListCoupontype(couponValues);
-        coupon.setCoupon_code("NULL");
+        String couponCode = couponService.generateKodeCoupon(coupon, couponValues);
+        coupon.setCoupon_code(couponCode);
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserModel user = userService.getUserByUsername(auth.getName());
