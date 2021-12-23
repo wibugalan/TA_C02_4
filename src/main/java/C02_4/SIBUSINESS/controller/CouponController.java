@@ -142,7 +142,6 @@ public class CouponController {
             coupon.setListCoupontype(couponValues);
         }
         coupon.setCoupon_code("");
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserModel user = userService.getUserByUsername(auth.getName());
         coupon.setCreator(user);
