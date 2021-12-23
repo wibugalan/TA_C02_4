@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -58,9 +59,8 @@ public class CouponServiceImpl implements CouponService{
     }
 
     @Override
-    public String generateKodeCoupon(CouponModel coupon, List<CouponTypeModel> couponValues) {
+    public String generateKodeCoupon(CouponModel coupon) {
         String out = "DISC";
-        String date = coupon.getExpiryDate().toString();
         String discAmount = Integer.toString(Math.round(coupon.getDiscountAmount() * 100));
         if(discAmount.length()==1){
             out += "00" + discAmount;
@@ -73,8 +73,8 @@ public class CouponServiceImpl implements CouponService{
         }
 
         List<String> day = new ArrayList<>();
-        if (!couponValues.isEmpty()) {
-            for(CouponTypeModel c: couponValues) {
+        if (!coupon.getListCoupontype().isEmpty()) {
+            for(CouponTypeModel c: coupon.getListCoupontype()) {
                 day.add(c.getUse_day());
             }
 
@@ -100,47 +100,11 @@ public class CouponServiceImpl implements CouponService{
                 out += "SAT";
             }
         }
-//        out += coupon.getExpiryDate().
-        String dayy = date.substring(8, 10);
-        String month = date.substring(4,7);
-        String year = date.substring(date.length()-2, date.length());
-        System.out.println(dayy);
-        System.out.println(month);
-        System.out.println(year);
-        out += dayy;
 
-        if (month.equalsIgnoreCase("jan")) {
-            out += "01";
-        }
-        else if (month.equalsIgnoreCase("feb")) {
-            out += "02";
-        }
-        else if (month.equalsIgnoreCase("mar")) {
-            out += "03";
-        }
-        else if (month.equalsIgnoreCase("apr")) {
-            out += "04";
-        }
-        else if (month.equalsIgnoreCase("may")) {
-            out += "05";
-        }else if (month.equalsIgnoreCase("jun")) {
-            out += "06";
-        }else if (month.equalsIgnoreCase("jul")) {
-            out += "07";
-        }else if (month.equalsIgnoreCase("aug")) {
-            out += "08";
-        }else if (month.equalsIgnoreCase("sep")) {
-            out += "09";
-        }else if (month.equalsIgnoreCase("okt")) {
-            out += "10";
-        }else if (month.equalsIgnoreCase("nov")) {
-            out += "11";
-        }
-        else if (month.equalsIgnoreCase("dec")) {
-            out += "12";
-        }
-
-        out += year;
+        SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
+        String strDate = formatter.format(coupon.getExpiryDate());
+        out += strDate.substring(0,4);
+        out += strDate.substring(6);
         return out;
     }
 }

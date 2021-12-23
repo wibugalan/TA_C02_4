@@ -19,7 +19,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/coupon")
@@ -134,10 +137,11 @@ public class CouponController {
 
     // Add coupon post
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    private String addCouponSubmit(@ModelAttribute CouponModel coupon, Model model, @RequestParam List<CouponTypeModel> couponValues){
-        coupon.setListCoupontype(couponValues);
-        String couponCode = couponService.generateKodeCoupon(coupon, couponValues);
-        coupon.setCoupon_code(couponCode);
+    private String addCouponSubmit(@ModelAttribute CouponModel coupon, Model model, @RequestParam(value = "couponValues", required = false)List<CouponTypeModel> couponValues){
+        if (couponValues != null) {
+            coupon.setListCoupontype(couponValues);
+        }
+        coupon.setCoupon_code("");
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserModel user = userService.getUserByUsername(auth.getName());
