@@ -83,7 +83,8 @@
             <td th:text="${coupon.coupon_code}"></td>
             <td th:text="${coupon.coupon_name}"></td>
             <td th:text="${coupon.discountAmount}"></td>
-            <td th:text="${coupon.expiryDate}"></td>
+            <!-- <td th:text="${coupon.expiryDate}"></td> -->
+            <td th:text="${#dates.format(coupon.expiryDate, 'EEE, dd MMM yyyy')}"></td>
             <td th:text="${coupon.creator.username}"></td>
             <td style="display: flex; align-items: center; justify-content: center;">
               <span><a class="btn btn-sm m-2 secondary-button" th:href="@{/coupon/detail(id=${coupon.id})}">Detail</a></span>

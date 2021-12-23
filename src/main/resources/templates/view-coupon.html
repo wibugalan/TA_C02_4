@@ -45,7 +45,8 @@
                 </tr>
                 <tr>
                     <th class="col-6">Expiry Date</th>
-                    <td th:text="': '+ ${coupon.expiryDate}"></td>
+                    <td th:text="': '+ ${#dates.format(coupon.expiryDate, 'EEE, dd MMM yyyy')}"></td>
+                <!-- <td th:text="': '+ ${coupon.expiryDate}"></td> -->
                 </tr>
                 <tr>
                     <th class="col-6">Creator</th>
@@ -83,6 +84,7 @@
         <div style="display: flex; align-items: center; justify-content: center;" sec:authorize="hasAnyAuthority('Staff Marketing', 'Staff_Marketing')">
         <!-- <div style="display: flex; align-items: center; justify-content: center;"> -->
             <span>  <a th:href="@{/coupon/update/}+${coupon.id}"  class="btn btn-warning m-2 ">Ubah</a></span>
+
             <span>
                 <button type="button" class="btn btn-warning m-2" data-toggle="modal" data-target="#exampleModal3">Hapus</button>
                   <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
@@ -106,6 +108,10 @@
                   </div>
             </span>
         </div>
+        
+        <span>  <a th:if="${coupon.status}==false" th:href="@{/coupon/requestCreation}"  class="btn btn-warning m-2 ">Kembali</a></span>
+        <span>  <a th:if="${coupon.status}==true" th:href="@{/coupon/}"  class="btn btn-warning m-2 ">Kembali</a></span>
+        
         </div>
     </div>
 </div>
