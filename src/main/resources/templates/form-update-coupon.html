@@ -30,7 +30,7 @@
                             <br>
 
                             <div class="namafield">Coupon Name</div>
-                            <input  class="form-control" type="text" name="coupon_name" th:value="*{coupon_name}"/>
+                            <input  required class="form-control" type="text" name="coupon_name" th:value="*{coupon_name}"/>
                             <br>
 
                             <div class="namafield">Coupon Code</div>
@@ -47,11 +47,11 @@
                             <br>
 
                             <div class="namafield">Discount Amount</div>
-                            <input  class="form-control" type="text" name="discountAmount" th:value="*{discountAmount}" />
+                            <input required  class="form-control" type="text" name="discountAmount" th:value="*{discountAmount}" />
                             <br>
 
                             <div class="namafield">Expiry Date</div>
-                            <input  th:value="*{#dates.format(expiryDate, 'yyyy-MM-dd')}" class="form-control" type="date" name="expiryDate"/>
+                            <input  required th:value="*{#dates.format(expiryDate, 'yyyy-MM-dd')}" class="form-control" type="date" name="expiryDate"/>
                             <br>
 
                             <div class="namafield">Coupon Type</div>
