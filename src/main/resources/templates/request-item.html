@@ -45,10 +45,11 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container atas">
-    <h2 class="judul">Daftar Request Pembuatan Item</h2>
-    <br>
+
 
     <div class="atas" th:if="*{listAll.size() != 0}">
+        <h2 class="judul">Daftar Request Pembuatan Item</h2>
+        <br>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -87,7 +88,7 @@
     <div class="atas" th:if="*{listAll.size() == 0}">
         <br>
         <br>
-        <h1>Maaf tidak terdapat Request Pembuatan Item</h1>
+        <h2 class="judul">Maaf tidak terdapat Request Pembuatan Item</h2>
         <br>
         <br>
     </div>
