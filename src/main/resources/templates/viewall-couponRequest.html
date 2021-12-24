@@ -57,7 +57,7 @@
             <thead>
             <tr>
                 <th>Id Coupon</th>
-                <th>Coupon Code</th>
+                <!-- <th>Coupon Code</th> -->
                 <th>Coupon Name</th>
                 <th>Discount Amount</th>
                 <th>Expiry Date</th>
@@ -72,7 +72,7 @@
             <tr th:each="coupon : ${listAll}">
 
                 <td th:text="${coupon.id}"></td>
-                <td th:text="${coupon.coupon_code}"></td>
+                <!-- <td th:text="${coupon.coupon_code}"></td> -->
                 <td th:text="${coupon.coupon_name}"></td>
                 <td th:text="${coupon.discountAmount}"></td>
                 <!-- <td th:text="${coupon.expiryDate}"></td> -->
@@ -125,7 +125,7 @@
     <div class="atas" th:if="*{listAll.size() == 0}">
         <br>
         <br>
-        <h1>Maaf tidak terdapat Coupon Creation Request</h1>
+        <h2 class="judul">Maaf tidak terdapat Coupon Creation Request</h2>
         <br>
         <br>
     </div>
