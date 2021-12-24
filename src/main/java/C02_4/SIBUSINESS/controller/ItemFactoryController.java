@@ -32,6 +32,7 @@ public class ItemFactoryController {
     ){
         List<ItemFactoryModel> listRequest = itemFactoryService.getItemRequestList();
         model.addAttribute("listAll", listRequest);
+        
         return "request-item";
     }
 

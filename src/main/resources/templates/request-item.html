@@ -84,7 +84,13 @@
         </table>
 
     </div>
-
+    <div class="atas" th:if="*{listAll.size() == 0}">
+        <br>
+        <br>
+        <h1>Maaf tidak terdapat Request Pembuatan Item</h1>
+        <br>
+        <br>
+    </div>
 
     <a class="btn btn-sm primary-button" href="/">Home</a>
 </div>
