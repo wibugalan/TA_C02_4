@@ -45,7 +45,7 @@ public class UserController {
         }
         userService.addUser(user);
         model.addAttribute("user", user);
-        return "redirect:/";
+        return "add-user";
     }
 
     @GetMapping("/viewall")
